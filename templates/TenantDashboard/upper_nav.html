@@ -1,0 +1,58 @@
+{% load static %}
+
+<div class="d-flex justify-content-between">
+  <div>
+    <p class="mt-3">
+      <b>
+        Welcome &nbsp;
+        <span class="fs-4 text-color"> {{user.last_name}}</span>
+      </b>
+    </p>
+    <p><i> We are here to find your suitable livings ... </i></p>
+  </div>
+
+  <div class="mt-4">
+    {% comment %}
+    <button
+      type="button"
+      class="btn bg-color position-relative ms-4 me-2"
+      id="notifications"
+    >
+      <i class="fa-regular fa-bell" title="notifications"></i>
+      <span
+        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+      >
+        10+
+        <span class="visually-hidden">unread messages</span>
+      </span>
+    </button>
+    {% endcomment %} {% if user.is_authenticated %}
+    <div class="dropdown show">
+      <a
+        class="btn btn-primary dropdown-toggle"
+        href="#"
+        role="button"
+        id="dropdownMenuLink"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="fa-solid fa-user"></i>
+      </a>
+
+
+
+        {% comment %}
+        <li class="nav-item ms-1 text-color mb-2">
+          <a class="nav-link" href="{%url 'dashboard'%}"
+            ><i class="fa-solid fa-address-card me-2"></i> My History</a
+          >
+        </li>
+        {% endcomment %}
+
+
+    </div>
+
+    {%endif %}
+  </div>
+</div>

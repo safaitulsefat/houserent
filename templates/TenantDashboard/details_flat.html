@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  
+  {% load static %}
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style>
+    img {
+  height:600px;
+  margin-left: 20%;
+}
+  </style>
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    
+</head>
+
+<body>
+  <header>
+    <!-- place navbar here -->
+  </header>
+  <main>
+    <div style="margin:40px">
+    <div>
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="background-color:gray;">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img class="d-block w-80" src="{% static 'images/flat2.jpeg' %}" alt="First slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-80" src="{% static 'images/flat.jpg' %}" alt="Second slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-80" src="{% static 'images/flat.jpg' %}" alt="Third slide">
+        </div>
+      </div>
+      <a class="carousel-control-prev" style="color:black href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" style="color:black" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    </div>
+    
+    <div style="background-color:white; padding: 20px; border: 1px solid rgb(67, 142, 168);">
+    <h4>Price: BDT 28 Thousand</h4>
+    <h4>This reasonable 1706 SQ FT residential home is ready for rent at Mirpur 10</h4>
+    <br>
+    <br>
+    <p style="font-size: 20px;"><strong>Address: &nbsp;</strong>Block A, Section10 Mirpur,Dhaka </p>
+    <p class="card-text">Looking for the most favorable flat in Mirpur? You just chose the right link to get through it. We are offering a reasonably priced flat for rent. This wonderful apartment is set with an amazing floor plan. There are 3 beds and a balcony is attached to the master bedroom. When you enter the flat, you will see that there is a space that is meant to be used as the dining and the drawing area. You will be able to decorate this apartment just the way you want to due to the capacity that is available here. </p>
+      <i class="fa fa-bed" style='font-size:18px'><span>&nbsp; &nbsp;3 bed</span></i><br>
+      <i class="fa fa-bath" style='font-size:18px'><span>&nbsp; &nbsp;4 bath</span></i><br>
+      <i class="fa fa-coffee" style='font-size:18px'><span>&nbsp; &nbsp;1 kitchen</span></i><br>
+    
+    </ul>
+    <br>
+    <br>
+    <h5 style="background-color:#2c74b3 ; padding: 10px; margin-right: 80%; color:white">Owner Contract details</h5>
+      <i class="fa fa-phone" style='font-size:18px'><span>&nbsp; &nbsp;phone:&nbsp; ++80175654356</span> </i><br>
+      <i class='fa fa-envelope-open' style='font-size:18px'><span>&nbsp; &nbsp;Email:&nbsp; s@gmail.com</span></i>
+    <br>
+    <br>
+    <button class="btn btn-primary" style="background-color:  #2c74b3;"id="btn">Book now</button>
+  </div>
+    </div>
+    
+  </main>
+  <footer>
+    <!-- place footer here -->
+  </footer>
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+  <script>
+    const btn = document.getElementById('btn');
+    btn.addEventListener('click', function handleClick() {
+      btn.textContent = 'Booked';
+    });
+  </script>
+</body>
+
+</html>

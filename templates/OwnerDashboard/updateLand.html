@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basha Lagbe</title>
+
+    {% comment %} fontawesome link {% endcomment %}
+    <script src="https://kit.fontawesome.com/d543e0cd2f.js" crossorigin="anonymous"></script>
+
+    {% comment %} bootstrap {% endcomment %}
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+
+    {% comment %} custom css {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/owner_navbar.css'%}" type="text/css" />
+  </head>
+  <body>
+     
+<div class = "container">
+  <div class = "row">
+    <div class="col-3 border-end border-primary">    
+      {% include 'OwnerDashboard/navbar.html' %}
+    </div>
+    
+    <div class ="col-9">
+      <div> 
+        <div class="mt-5 me-5">
+            {%for msg in messages%}
+            <div class="alert alert-success alert-dismissible fade show mt-3 mb-4" role="alert">
+               <strong>Hey!</strong> {{msg}}
+               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+               </button>
+             </div>
+            {%endfor%}
+            <h4 class="mt-2 mb-5 text-secondary text-decoration-underline text-center">
+              Update Your Flat Details
+            </h4>
+            <form
+              class="form"
+              method="POST"
+              enctype="multipart/form-data"
+            >
+              {% csrf_token %}
+              <div class="input-group mb-3 mt-4">
+                <select class="form-select mb-3" id="inputGroupSelect02" name="divission" disabled>
+                  <option >{{single_land.divission}}</option>
+                  <option value="Dhaka">Dhaka</option>
+                  <option value="Chattogram">Chattogram</option>
+                  <option value="Rajshahi">Rajshahi</option>
+                  <option value="Khulna">Khulna</option>
+                  <option value="Barishal">Barishal</option>
+                  <option value="Sylhet">Sylhet</option>
+                  <option value="Rangpur">Rangpur</option>
+                  <option value="Mymenshingh">Mymenshingh</option>
+                </select>
+              </div>
+              <div class="input-group mb-3">
+                <select class="form-select mb-3" id="inputGroupSelect02" name="district" disabled>
+                  <option >{{single_land.district}}</option>
+                  <option value="Dhaka">Dhaka</option>
+                  <option value="Khulna">Khulna</option>
+                  <option value="Chattogram">Chattogram</option>
+                  <option value="Cumilla">Cumilla</option>
+                  <option value="Rajshahi">Rajshahi</option>
+                  <option value="Sylhet">Sylhet</option>
+                  <option value="Barishal">Barishal</option>
+                </select>
+              </div>
+          
+              <div class="input-group mb-4">
+                <input
+                  type="text"
+                  name="location"
+                  class="form-control"
+                  aria-label="Sizing example input"
+                  aria-describedby="inputGroup-sizing-default"
+                  placeholder="Your Flat Located Area"
+                  value="{{single_land.location}}"
+                  disabled
+                />
+              </div>
+          
+              <div class="input-group mb-4">
+                <span class="input-group-text">
+                  <i class="fa-solid fa-bangladeshi-taka-sign text-center pt-2"></i>
+                </span>
+                <input
+                  type="text"
+                  name="price"
+                  class="form-control w-25 me-2"
+                  aria-label="Amount (to the nearest dollar)"
+                  placeholder="Ammount You Require For"
+                  value="{{single_land.price}}"
+                />
+          
+                <select
+                  class="form-select ms-3"
+                  name="ammount"
+                  id="inputGroupSelect02"
+                >
+                    <option selected>{{single_land.ammount}}</option>
+                  <option value="Lakhs">Lakhs</option>
+                  <option value="Crore">Crore</option>
+                </select>
+              </div>
+          
+              <div class="d-flex gap-5 mb-4">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="">Floor No.</span>
+                    </div>
+                  <input
+                    type="text"
+                    name="plots_count"
+                    class="form-control"
+                    aria-label="Amount (to the nearest dollar)"
+                    placeholder="Numerical Value Of Your Plot"
+                    value="{{single_land.plots_count}}"
+                  />
+          
+                  <select
+                    class="form-select ms-3"
+                    name="land_type"
+                    id="inputGroupSelect02"
+                  >
+                    <option selected value="{{single_land.land_type}}">{{single_land.land_type}}</option>
+                    <option value="Bigha">Bigha</option>
+                    <option value="Acre">Acre</option>
+                    <option value="Dcm">Dcm</option>
+                    <option value="Percantage">Percantage</option>
+                  </select>
+                </div>
+              </div>
+          
+              <textarea
+                name="details"
+                id=""
+                cols="80"
+                rows="8"
+                class="form-control mt-4 mb-4"
+                style="resize: none"
+                placeholder="Write Details About Your Flat Ellaborately"
+              >{{single_land.details}}</textarea>
+          
+              <div class="d-flex gap-3">
+                <label class="form-label text-secondary mt-1 fw-bold" for="customFile"
+                  >Upload Photo Of Your Land</label
+                >
+                <input
+                  type="file"
+                  name="photo_url"
+                  class="form-control mb-5 w-50"
+                  id="customFile"
+                />
+              </div>
+          
+              <input class="btn bg-color ms-2 me-3 mb-5" type="submit" value="Submit" />
+          
+              <input class="btn bg-color ms-3 mb-5" type="reset" value="Reset" />
+            </form>
+          </div>
+          
+      </div>
+
+  </div>
+</div>
+
+    <!-- bootstrap cdn -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+      integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
+

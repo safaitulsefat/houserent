@@ -1,0 +1,18 @@
+<h4 class="text-center mt-5"> Find Your First Choice Appartment Or Land </h4>
+
+
+ 
+<div class="bg-color p-1 rounded mt-5 w-25 mb-3">
+        <input type="radio" id="radio-button_flat" name="radio-button"> Buy Flat
+    </div>
+  <form action="{%url 'search'%}">
+  <input class="btn bg-color  mb-5" type="submit" value="if you can find home search area wise please click here">
+  </form>
+{%include "TenantDashboard/buy_flat.html"%}
+
+
+<div class="bg-color p-1 rounded w-25 mb-3 mt-5">
+    <input type="radio" id="radio-button_land" name="radio-button"> Buy Land 
+  </div>
+
+{% include "TenantDashboard/buy_land.html"%}

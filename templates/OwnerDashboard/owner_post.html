@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basha Lagbe</title>
+
+    {% comment %} fontawesome link {% endcomment %}
+    <script src="https://kit.fontawesome.com/d543e0cd2f.js" crossorigin="anonymous"></script>
+
+    {% comment %} bootstrap {% endcomment %}
+      <link  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+         rel="stylesheet"
+         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+         crossorigin="anonymous"
+         />
+    {% comment %} custom css {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/owner_navbar.css'%}" type="text/css" />
+
+  </head>
+  <body>
+     
+<div class = "container">
+  <div class = "row">
+    <div class="col-3 border-end border-primary">    
+        {% include 'OwnerDashboard/navbar.html' %}
+    </div>
+ 
+  <div class="col-9 mt-5">
+    <div class="row  g-4">
+      {%for msg in messages%}
+      {% if msg.tags == "success" %}
+      <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+        <strong>Hey!</strong> {{msg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        </button>
+      </div>
+      {% elif msg.tags == "error" %}
+      <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+        <strong>Hey!</strong> {{msg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        </button>
+      </div>
+      {% endif %}
+      {%endfor%}
+
+      {% if allpost %}
+      <h3 class="text-center mb-3 text-secondary">Your Rent Post's</h3>
+      <hr/>
+      {%  for p in allpost %}
+      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xl-4 col-xxl-4">
+        <div class="card h-100">
+          <img src="{{p.rent_photo.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image">
+          <div class="card-body">
+            <h5 class="card-title">Property Type:{{ p.property_type }}</h5>
+            <p class="card-text">
+              Rent Type:{{ p.rent_type }}.<br/>
+              Floor No:{{p.floor_no }}<br/>
+              Floor Face:{{p.floor_face }}</br>
+              Phone:{{p.phone_no }}</p>
+          </div>
+          <div class="d-flex m-2 justify-content-between">
+            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#rent_{{p.id}}">
+              DELETE       
+            </button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
+              <a   class="text-light" href="{% url 'updatepost' p.id %}?type=rent">
+                EDIT
+              </a>
+            </button>
+
+<!-- Modal -->
+<div class="modal fade" id="rent_{{p.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-danger" id="staticBackdropLabel">Delete Rent Post - (ID : {{p.id}})</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this rent post?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary"><a class="text-light" id="ToastBtn" href="{% url 'deletepost' p.id %}?type=rent"  >Yes</a></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- modal -->
+    </div>
+      <div class="card-footer">
+        <small class="text-muted">Post Time: {{ p.date_added }}</small>
+      </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% if not allpost|length and not all_Sell_flat|length and not Sell_land|length %}
+      <h3 class="text-center text-secondary">You've no post</h3>
+      {%endif%}
+      {% include 'OwnerDashboard/sell_post.html' %}
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+
+    
+
+
+    <script>
+      const toastTrigger = document.getElementById('ToastBtn')
+  const toastLiveExample = document.getElementById('liveToast')
+  if (toastTrigger) {
+    toastTrigger.addEventListener('click', () => {
+      const toast = new bootstrap.Toast(toastLiveExample)
+  
+      toast.show()
+    })
+  }
+  
+      </script>
+
+    <!-- bootstrap cdn -->
+    <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"
+     ></script>
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+    integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+    crossorigin="anonymous"
+  ></script>
+  </body>
+</html>

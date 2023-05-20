@@ -1,0 +1,207 @@
+
+{% comment %} {% extends "OwnerDashboard/owner_base.html" %} {% endcomment %}
+
+
+{% load static %}
+
+{% include "OwnerDashboard/upper_nav.html"%}
+
+<div class="contaier">
+  
+    {% comment %} Section - 1  Hot Collections Of Flat{% endcomment %}
+
+  <div class="heading bg-color mt-5 rounded">
+   <h2 class="p-3"> Our Hot Collections On Flat </h2>
+  </div>
+
+  {% comment %} Pictures of Flat Card {% endcomment %}
+
+ <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+      <div class="card h-100">
+        <img src="{% static 'images/flat.jpg' %}" class="card-img-top h-50" alt="...">
+        <div class="card-body">
+          <h5 class="card-title text-center"><i class="fa-solid fa-location-dot"></i> Banani-2, Dhaka</h5>
+          <p class="card-text ms-1">This is new readymade flat for sale.It is located in central places of Dhaka city & a residential secure place for living. <a hre="#" class="text-priamry card-a"> View Details </a></p>
+        </div>
+        <small class="text-muted">
+        <div class="card-footer d-flex justify-content-between">
+          
+            <div class="course-rating">
+                <i class="fa-solid fa-star filled"></i>
+                <i class="fa-solid fa-star filled"></i>
+                <i class="fa-solid fa-star filled"></i>
+                <i class="fa-solid fa-star filled"></i>
+                <i class="fa-solid fa-star empty"></i>
+            </div>  
+            <div class="fw-bold"> 4.5 </div>
+            <div class = "duration ms-3">
+                <i class="fa-solid fa-bangladeshi-taka-sign text-center pt-2"></i>
+               <span class="fw-bold ps-2"> 3.20 cr. </span>
+             </div>
+        </div>
+          </small>
+
+
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100">
+        <img src="{% static 'images/flat2.jpeg' %}" class="card-img-top h-50" alt="...">
+        <div class="card-body">
+            <h5 class="card-title text-center"><i class="fa-solid fa-location-dot"></i> Gulshan-1, Dhaka</h5>
+            <p class="card-text ms-1">This is new readymade flat for sale. It's 4th floor south faces apperment. It constructed by Shanta Holdings Ltd. <a hre="#" class="text-priamry card-a"> View Details </a></p>
+          </div>
+          <small class="text-muted">
+          <div class="card-footer d-flex justify-content-between">
+            
+              <div class="course-rating">
+                  <i class="fa-solid fa-star filled"></i>
+                  <i class="fa-solid fa-star filled"></i>
+                  <i class="fa-solid fa-star filled"></i>
+                  <i class="fa-solid fa-star filled"></i>
+                  <i class="fa-solid fa-star empty"></i>
+              </div>  
+              <div class="fw-bold"> 4.5 </div>
+              <div class = "duration ms-3">
+                  <i class="fa-solid fa-bangladeshi-taka-sign text-center pt-2"></i>
+                 <span class="fw-bold ps-2"> 2.50 cr. </span>
+               </div>
+          </div>
+            </small>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100">
+        <img src = "{% static 'images/flat3.jpg' %}" class="card-img-top h-50" alt="...">
+        <div class="card-body">
+            <h5 class="card-title text-center"><i class="fa-solid fa-location-dot"></i> Mohammedpur, Dhaka</h5>
+            <p class="card-text ms-1">This is newly construct in Mohammedpur. A few floor remains for sale. Flat Offers is running . Contact With us fast. <a hre="#" class="text-priamry card-a"> View Details </a></p>
+          </div>
+          <small class="text-muted">
+          <div class="card-footer d-flex justify-content-between">
+            
+              <div class="course-rating">
+                  <i class="fa-solid fa-star filled"></i>
+                  <i class="fa-solid fa-star filled"></i>
+                  <i class="fa-solid fa-star filled"></i>
+                  <i class="fa-solid fa-star filled"></i>
+                  <i class="fa-solid fa-star empty"></i>
+              </div>  
+              <div class="fw-bold"> 4.5 </div>
+              <div class = "duration ms-3">
+                  <i class="fa-solid fa-bangladeshi-taka-sign text-center pt-2"></i>
+                 <span class="fw-bold ps-2"> 1.80 cr. </span>
+               </div>
+          </div>
+            </small>
+      </div>
+    </div>
+  </div>
+ </div>
+
+
+ {% comment %} Section -2   Hot Collections Of Land {% endcomment %}
+
+ <div class="heading bg-color mt-5 rounded">
+  <h2 class="p-3"> Our Hot Collections On Land </h2>
+ </div>
+ 
+   {% comment %} Pictures of Land Property {% endcomment %}
+ 
+  <div class="row row-cols-1 row-cols-md-3 g-4 mb-3">
+     <div class="col">
+       <div class="card h-100">
+         <img src="{% static 'images/land-2.jpeg' %}" class="card-img-top h-50" alt="...">
+         <div class="card-body">
+           <h5 class="card-title text-center"><i class="fa-solid fa-location-dot"></i> Uttar Khan, Dhaka</h5>
+           <p class="card-text ms-1">This is 2 acre land for sale located in Uttar Khan in Dhaka urban side. This is a nice place for making a dream house. Negotation Option is open.  <a hre="#" class="text-priamry card-a"> View Details </a></p>
+         </div>
+         <small class="text-muted">
+         <div class="card-footer d-flex justify-content-between">
+           
+             <div class="course-rating">
+                 <i class="fa-solid fa-star filled"></i>
+                 <i class="fa-solid fa-star filled"></i>
+                 <i class="fa-solid fa-star filled"></i>
+                 <i class="fa-solid fa-star filled"></i>
+                 <i class="fa-solid fa-star empty"></i>
+             </div>  
+             <div class="fw-bold"> 4.0 </div>
+             <div class = "duration ms-3">
+                 <i class="fa-solid fa-bangladeshi-taka-sign text-center pt-2"></i>
+                <span class="fw-bold ps-2"> 1.50 cr. </span>
+              </div>
+         </div>
+           </small>
+ 
+ 
+       </div>
+     </div>
+     <div class="col">
+       <div class="card h-100">
+         <img src="{% static 'images/land.jpeg' %}" class="card-img-top h-50" alt="...">
+         <div class="card-body">
+             <h5 class="card-title text-center"><i class="fa-solid fa-location-dot"></i> Dokkhin Khan, Dhaka</h5>
+             <p class="card-text ms-1">This is 1.5 acre land for sale located in Dokkhin Khan in Dhaka urban side. This is a nice place for making a dream house. Feel free to negotiate. <a hre="#" class="text-priamry card-a"> View Details </a></p>
+           </div>
+           <small class="text-muted">
+           <div class="card-footer d-flex justify-content-between">
+             
+               <div class="course-rating">
+                   <i class="fa-solid fa-star filled"></i>
+                   <i class="fa-solid fa-star filled"></i>
+                   <i class="fa-solid fa-star filled"></i>
+                   <i class="fa-solid fa-star filled"></i>
+                   <i class="fa-solid fa-star empty"></i>
+               </div>  
+               <div class="fw-bold"> 4.2 </div>
+               <div class = "duration ms-3">
+                   <i class="fa-solid fa-bangladeshi-taka-sign text-center pt-2"></i>
+                  <span class="fw-bold ps-2"> 1.50 cr. </span>
+                </div>
+           </div>
+             </small>
+       </div>
+     </div>
+     <div class="col">
+       <div class="card h-100">
+         <img src = "{% static 'images/land3jpg.jpg' %}" class="card-img-top h-50" alt="...">
+         <div class="card-body">
+             <h5 class="card-title text-center"><i class="fa-solid fa-location-dot"></i> Anowara,Chattogram</h5>
+             <p class="card-text ms-1">This is 4.5 acre land for sale located in Anowara Upzila in Port City Chattogram. This is a nice place for making a industrial place. Feel free to negotiate. <a hre="#" class="text-priamry card-a"> View Details </a></p>
+           </div>
+           <small class="text-muted">
+           <div class="card-footer d-flex justify-content-between">
+             
+               <div class="course-rating">
+                   <i class="fa-solid fa-star filled"></i>
+                   <i class="fa-solid fa-star filled"></i>
+                   <i class="fa-solid fa-star filled"></i>
+                   <i class="fa-solid fa-star filled"></i>
+                   <i class="fa-solid fa-star empty"></i>
+               </div>  
+               <div class="fw-bold"> 4.4 </div>
+               <div class = "duration ms-3">
+                   <i class="fa-solid fa-bangladeshi-taka-sign text-center pt-2"></i>
+                  <span class="fw-bold ps-2"> 3 cr. </span>
+                </div>
+           </div>
+             </small>
+       </div>
+     </div>
+   </div>
+  </div>
+
+
+
+  {% comment %} section-3 hot collections outside of Dhaka {% endcomment %}
+
+
+
+
+
+</div>
+
+
+

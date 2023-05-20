@@ -1,0 +1,90 @@
+<div class="mt-5 me-5">
+    <h4 class="mt-2 mb-5 text-secondary text-decoration-underline text-center">
+      Buy Your Dream Flat
+    </h4>
+    <form
+      class="form"
+      action="{% url 'sell_property' 'flat' %}"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      {% csrf_token %}
+      <div class="input-group mb-3 mt-4" required>
+        <select class="form-select mb-3" id="inputGroupSelect02" name="divission">
+          <option selected>Choose Divission</option>
+          <option value="Dhaka">Dhaka</option>
+          <option value="Chattogram">Chattogram</option>
+          <option value="Rajshahi">Rajshahi</option>
+          <option value="Khulna">Khulna</option>
+          <option value="Barishal">Barishal</option>
+          <option value="Sylhet">Sylhet</option>
+          <option value="Rangpur">Rangpur</option>
+          <option value="Mymenshingh">Mymenshingh</option>
+        </select>
+      </div>
+      <div class="input-group mb-3" required>
+        <select class="form-select mb-3" id="inputGroupSelect02" name="district">
+          <option selected>Choose District</option>
+          <option value="Dhaka">Dhaka</option>
+          <option value="Khulna">Khulna</option>
+          <option value="Chattogram">Chattogram</option>
+          <option value="Cumilla">Cumilla</option>
+          <option value="Rajshahi">Rajshahi</option>
+          <option value="Sylhet">Sylhet</option>
+          <option value="Barishal">Barishal</option>
+        </select>
+      </div>
+  
+      <div class="input-group mb-4">
+        <input
+          type="text"
+          name="location"
+          class="form-control"
+          aria-label="Sizing example input"
+          aria-describedby="inputGroup-sizing-default"
+          placeholder="Your Flat Located Area"
+          required
+        />
+      </div>
+  
+      <div class="input-group mb-3">
+        <span class="input-group-text">
+          <i class="fa-solid fa-bangladeshi-taka-sign text-center pt-2"></i>
+        </span>
+        <input
+          type="text"
+          name="price"
+          class="form-control w-25 me-2"
+          aria-label="Amount (to the nearest dollar)"
+          placeholder="Ammount You Require For"
+          required
+        />
+  
+        <select
+          class="form-select mb-3 ms-3"
+          name="ammount"
+          id="inputGroupSelect02"
+        >
+          <option selected value="Lakhs">Lakhs</option>
+          <option value="Crore">Crore</option>
+        </select>
+      </div>
+
+  
+      <textarea
+        name="details"
+        id=""
+        cols="80"
+        rows="8"
+        class="form-control mt-4 mb-4"
+        style="resize: none"
+        placeholder="Write Details About Your Flat Ellaborately"
+      ></textarea>
+
+  
+      <input class="btn bg-color ms-2 me-3 mb-5" type="submit" value="Search" />
+  
+      <input class="btn bg-color ms-3 mb-5" type="reset" value="Clear" />
+    </form>
+  </div>
+  

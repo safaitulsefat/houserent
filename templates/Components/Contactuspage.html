@@ -1,0 +1,60 @@
+{% extends "base.html"%}
+
+{%load static%}
+
+{%block content%}
+
+<div>
+    <div class="pt-5 pb-5 container">
+      <div class="row">
+        {%for msg in messages%}
+        <div class="alert alert-primary alert-dismissible fade show mt-3" role="alert">
+           <strong>Hey!</strong> {{msg}}
+           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+           </button>
+         </div>
+        {%endfor%}
+        <div class="col-md-6 col-sm-12 col-lg-6 col-xl-6 col-xxl-6 col-xs-12">
+           <form class="form me-5" id="rentform" method="POST"  enctype='multipart/form-data'>
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">NAME </label>
+              <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="Your name">
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Email address</label>
+              <input type="email" name="email"  class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">Massage</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
+              placeholder="Your massege"
+              name="message"  
+              ></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Send Massage</button>
+           </form>
+
+        </div>
+
+        <div class="col-md-6 col-sm-12 col-lg-6 col-xl-6 col-xxl-6 col-xs-12">
+            <h3 class="mb-3 pt-sm-2">
+                Our office location
+            </h3>
+            <hr/>
+
+            <div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.9055892301235!2d90.38834401487551!3d23.750745884589193!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8a332362ef5%3A0xee89142efe8969a6!2sPanthapath%2C%20Dhaka%201205!5e0!3m2!1sen!2sbd!4v1676806354215!5m2!1sen!2sbd" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+        </div>
+      </div>
+    
+    </div>
+</div>
+{% include "./footer.html" %}
+
+
+{% endblock %}

@@ -1,0 +1,203 @@
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.reg_a {
+  color: #fff;
+}
+
+.buttn1 {
+  top: 50%;
+  background: #1e2167;
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  padding: 8px;
+  min-height: 27px;
+  min-width: 120px;
+  margin-right: 5px;
+}
+.aboutbtn {
+  background: linear-gradient(180deg, #000000 0%, #254073 100%);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  padding: 8px;
+  min-height: 27px;
+  min-width: 156px;
+  margin-right: 5px;
+}
+
+.loginbtn {
+  top: 50%;
+  background-color: #e7e7e7;
+  border: none;
+  border-radius: 14px;
+  padding: 8px;
+  min-height: 27px;
+  min-width: 120px;
+  margin-right: 5px;
+}
+
+.loginbtn:hover,
+.roundbtn:hover {
+  background-color: #3078b8;
+  color: #fff !important;
+  transition: 0.7s;
+}
+
+#bannerBG {
+  width: 100%;
+  height: 600px;
+  background-size: cover;
+  color: white;
+  background-image: linear-gradient(
+      180deg,
+      rgba(9, 14, 58, 0.567) 0%,
+      rgba(10, 14, 53, 0.9) 100%
+    ),
+    url(../images/bg2.jpg);
+  text-align: center;
+}
+
+.centered-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 4.5em;
+  /* set the height of the div to center the text vertically */
+}
+
+.roundbtn {
+  background: #d9d9d9;
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  border-radius: 23px;
+
+  padding: 8px;
+  min-height: 27px;
+  min-width: 120px;
+  margin-right: 5px;
+}
+
+.aboutdiv {
+  background: url("../images/Vector2.png") no-repeat;
+  width: 100%;
+  background-size: contain;
+  background-position: bottom center;
+  background-color: rgba(239, 241, 242, 0.5);
+  padding-top: 20px;
+}
+.numbers {
+  background: #083158;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  color: #fff;
+}
+
+.otherfeauer {
+  background-image: url("../images/Texturebg.png");
+  background-color: #547697;
+  background-size: contain;
+
+  color: #fff;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.aboutcontents {
+  text-align: center;
+  background: url("../images/Texture1.png") no-repeat;
+  background-size: contain;
+  background-position: bottom center;
+  padding-top: 30px;
+}
+.subscribebtn {
+  background: rgba(217, 217, 217, 1);
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  border-radius: 5px;
+  padding: 8px;
+  min-height: 27px;
+  min-width: 154px;
+  margin-right: 5px;
+  color: rgba(17, 15, 111, 1);
+}
+.contactus {
+  background-color: rgba(220, 230, 236, 1);
+  color: #fff;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.contactoday {
+  background: #292552;
+  border-radius: 27px;
+  padding-top: 30px;
+  padding-left: 50px;
+  color: #fff;
+}
+.getstart {
+  background: #e4ecf1;
+  border-radius: 27px;
+  color: #1f3659;
+  padding-top: 47px !important;
+  padding-left: 50px;
+}
+
+.newslatter {
+  background-color: rgba(72, 99, 125, 1);
+  padding-top: 30px;
+  padding-bottom: 30px;
+  color: #fff;
+}
+.footer {
+  background-color: #000929;
+  color: #fff;
+  padding-top: 50px;
+  padding-bottom: 30px;
+}
+.privacypolicy {
+  background-color: #141c38;
+  color: #fff;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.cardimg {
+  width: 77px;
+  height: 77px;
+  padding-top: 20px;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0px 12px 19px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+
+@media only screen and (max-width: 676px) {
+  .buttn1 {
+    margin-top: 1rem;
+  }
+}
+
+.landloard {
+  background-color: #000929;
+  color: #fff;
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin: 0 auto;
+  float: none;
+}
+
+/*
+base colors
+
+0A2647
+144272
+205295
+2C74B3
+
+*/

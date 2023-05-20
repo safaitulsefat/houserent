@@ -1,0 +1,114 @@
+{%load static%}
+
+
+{% if all_Sell_flat %}
+      <h3 class="text-center mt-5 mb-3 text-secondary">Your Sell Post's for flat</h3>
+      <hr/>
+      {%  for p in all_Sell_flat %}
+      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xl-4 col-xxl-4">
+        <div class="card h-100">
+          <img src="{{p.flat_image.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image">
+          <div class="card-body">
+            <h5 class="card-title">Divison: {{ p.divission }}</h5>
+            <p class="card-text ">
+             District: {{ p.district }}.<br/>
+              Floor No: {{p.floors_count }}<br/>
+              Floor Face: {{p.floor_face }}</br>
+              Price: {{p.price }}</p>
+          </div>
+          <div class="d-flex m-2 justify-content-between">
+            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#flat_{{p.id}}">
+              DELETE
+            </button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
+              <a   class="text-light" href="{% url 'updatepost' p.id %}?type=flat">
+                EDIT
+              </a>
+              </button>
+
+   <!-- Modal -->
+
+   <div class="modal fade" id="flat_{{p.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-danger" id="staticBackdropLabel">Delete Flat Post - (ID : {{p.id}})</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete this flat post?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary"><a class="text-light" id="ToastBtn" href="{% url 'deletepost' id=p.id %}?type=flat"  >Yes</a></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- modal -->
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Post Time: {{ p.date_added  }}</small>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+     
+      {%endif%}
+
+{% if Sell_land %}
+<h3 class="text-center mt-5 mb-3 text-secondary">Your Sell Post's for Land</h3>
+<hr/>
+{%  for p in Sell_land %}
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xl-4 col-xxl-4">
+  <div class="card h-100">
+    <img src="{{p.land_image.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image">
+    <div class="card-body">
+      <h5 class="card-title">Divison: {{ p.divission }}</h5>
+      <p class="card-text">
+       District: {{ p.district }}<br/>
+       Plots: {{p.plots_count }}<br/>
+       Land type: {{p.land_type }}</br>
+        Price: {{p.price }}</p>
+    </div>
+    <div class="d-flex m-2 justify-content-between">
+      <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#land_{{p.id}}">
+        DELETE
+                 
+      </button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
+        <a   class="text-light" href="{% url 'updatepost' p.id %}?type=land">
+          EDIT
+        </a>
+        </button>
+
+  <!-- Modal -->
+
+  <div class="modal fade" id="land_{{p.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="2" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-danger" id="staticBackdropLabel">Delete Land Post - (ID : {{p.id}})</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete this land post?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary"><a class="text-light" id="ToastBtn" href="{% url 'deletepost' id=p.id %}?type=land"  >Yes</a></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- modal -->
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Post Time: {{ p.date_added  }}</small>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{%endif%}
+ 
+
