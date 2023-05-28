@@ -26,19 +26,20 @@
   </head>
   <body>
     {% include "OwnerDashboard/upper_nav.html"%}
-<div class = "container">
+<div class = "container" style="background-color: antiquewhite;">
   <div class = "row">
   <div class="col-12 mt-5">
     <div class="row  g-4">
-    
+      {% include 'OwnerDashboard/searchform.html' %}
       {% if allpost %}
       <h3  class="text-center mb-3 text-secondary">Our all Hot collection Rent</h3>
       <hr/>
       {%  for p in allpost %}
       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xl-4 col-xxl-4">
-        <div class="card h-100">
+        <div class="card h-100" style="background-color: cornflowerblue;">
           <img src="{{p.rent_photo.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image">
           <div class="card-body">
+            <h1>type:Rent</h1>
             <h5 class="card-title">Property Type:{{ p.property_type }}</h5>
             <p class="card-text">
               Rent Type:{{ p.rent_type }}.<br/>
@@ -48,7 +49,7 @@
           </div>
           <div class="d-flex m-2 justify-content-between">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
-              <a   class="text-light" href="{% url 'updatepost' p.id %}?type=rent">
+              <a href="{% url 'rentdetails' p.id %}">
                 view details
               </a>
             </button>
@@ -95,6 +96,7 @@
         <div class="card h-100">
           <img src="{{p.flat_image.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image">
           <div class="card-body">
+            <h1>type:Flat</h1>
             <h5 class="card-title">Divison: {{ p.divission }}</h5>
             <p class="card-text ">
              District: {{ p.district }}.<br/>
@@ -104,7 +106,7 @@
           </div>
           <div class="d-flex m-2 justify-content-between">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
-              <a   class="text-light" href="{% url 'updatepost' p.id %}?type=flat">
+              <a href="{% url 'flatdetails' p.id %}">
                 view details
               </a>
               </button>
@@ -147,6 +149,7 @@
   <div class="card h-100">
     <img src="{{p.land_image.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image">
     <div class="card-body">
+      <h1>type:Land</h1>
       <h5 class="card-title">Divison: {{ p.divission }}</h5>
       <p class="card-text">
        District: {{ p.district }}<br/>
@@ -156,7 +159,7 @@
     </div>
     <div class="d-flex m-2 justify-content-between">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
-        <a   class="text-light" href="{% url 'updatepost' p.id %}?type=land">
+        <a href="{% url 'landdetails' p.id %}">
           view details
         </a>
         </button>

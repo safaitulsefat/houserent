@@ -1,8 +1,9 @@
+from re import search
 from django.urls import path
 
-from .views import ( delete_post, deletesellflat, deletesellland,flatDetails,
-                    identifyUser, owner_post, ownerBuy, ownerDashboard,
-                    ownerRent, ownerSell, updatepost, userAccount, userBuy,
+from .views import ( delete_post, deletesellflat, deletesellland, flat_view,flatDetails,
+                    identifyUser, land_view, owner_post, ownerBuy, ownerDashboard,
+                    ownerRent, ownerSell, rent_view, updatepost, userAccount, userBuy,
                     userDashboard, userRent, userSearch, userShow)
 
 urlpatterns =[
@@ -31,5 +32,9 @@ urlpatterns =[
     path("deletesellflat/<int:id>/",deletesellflat, name="deletesellflat"),
 
     path("deletesellland/<int:id>/",deletesellland, name="deletesellland"),
+    path('rentdetails/<int:id>/', rent_view, name='rentdetails'),
+    path('flatdetails/<int:id>/', flat_view, name='flatdetails'),
+    path('landdetails/<int:id>/', land_view, name='landdetails'),
+     path('search',search,name='search'),
 
 ]

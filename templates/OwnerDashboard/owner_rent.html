@@ -20,13 +20,13 @@
       <link rel="stylesheet" href="{% static 'css/owner_navbar.css'%}" type="text/css" />
    </head>
    <body>
-      <div class = "container">
+      <div class = "container" style="background-color: aquamarine;">
       <div class = "row">
          <div class="col-3 border-end border-primary">    
             {% include 'OwnerDashboard/navbar.html' %}
          </div>
         
-         <div class ="col-9">
+         <div class ="col-9" style="background-color:skyblue">
             <h4 class="text-center mt-5 text-decoration-underline text-secondary"> Give Rent Your Property From Here </h4>
             {%for msg in messages%}
             <div class="alert alert-primary alert-dismissible fade show mt-3" role="alert">

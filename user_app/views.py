@@ -4,7 +4,7 @@ import time
 from account.models import NewUser
 from django.contrib import messages
 from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render,get_object_or_404
 
 from .models import OwnerRent, Sell_flat, Sell_land
 
@@ -195,7 +195,6 @@ def delete_post(request, id):
 
 def updatepost(request,id):
     property_type =  request.GET.getlist('type')[0]
-
     if property_type == "rent" :
         single_post= OwnerRent.objects.get(id=id)
     elif property_type == "flat" :
@@ -357,3 +356,27 @@ def userUpdate(request):
             last_name = request.POST.get("last_name")
             email = request.POST.get("email")
 
+def rent_view(request, id):
+        rentdetails = OwnerRent.objects.get(id=id)
+        return render(request, 'OwnerDashboard/rentdetails.html', {'rentdetails': rentdetails})
+def flat_view(request, id):
+        flatdetails = Sell_flat.objects.get(id=id)
+        return render(request, 'OwnerDashboard/flatdetails.html', {'flatdetails': flatdetails})
+def land_view(request, id):
+        landdetails = Sell_land.objects.get(id=id)
+        return render(request, 'OwnerDashboard/landdetails.html', {'landdetails': landdetails})
+        
+def search(request):
+    get_method = request.GET.copy()
+    keywords = get_method.get('keywords') or None
+    product = OwnerRent.objects.all()
+    
+    if keywords:
+        keyword = get_method['keywords']
+        product_list = product.filter(description__icontains=keyword)
+    context = {
+        'product_list':product_list
+    }
+    
+    return render(request,'OwnerDashboard/search_result.html',context)
+        
