@@ -8,7 +8,9 @@
     <title>Basha Lagbe</title>
     <style>
       h3{
-        background-color: aqua;
+        background-color: rgb(36, 35, 35);
+        height: 50px;
+        border-radius: 10px;
       }
     </style>
     {% comment %} fontawesome link {% endcomment %}
@@ -26,11 +28,12 @@
   </head>
   <body>
     {% include "OwnerDashboard/upper_nav.html"%}
-<div class = "container" style="background-color: antiquewhite;">
+    {% include "OwnerDashboard/searchform.html"%}
+<div class = "container" style="background-color: skyblue;">
   <div class = "row">
   <div class="col-12 mt-5">
     <div class="row  g-4">
-      {% include 'OwnerDashboard/searchform.html' %}
+      
       {% if allpost %}
       <h3  class="text-center mb-3 text-secondary">Our all Hot collection Rent</h3>
       <hr/>
@@ -39,17 +42,18 @@
         <div class="card h-100" style="background-color: cornflowerblue;">
           <img src="{{p.rent_photo.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image">
           <div class="card-body">
-            <h1>type:Rent</h1>
-            <h5 class="card-title">Property Type:{{ p.property_type }}</h5>
+            <h1>Type:Rent</h1>
             <p class="card-text">
               Rent Type:{{ p.rent_type }}.<br/>
+              Available_month:{{p.available_month}}</br>
               Floor No:{{p.floor_no }}<br/>
               Floor Face:{{p.floor_face }}</br>
+              Price: {{p.rent_money }} {{p.money_type}}</p>
               Phone:{{p.phone_no }}</p>
           </div>
           <div class="d-flex m-2 justify-content-between">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
-              <a href="{% url 'rentdetails' p.id %}">
+              <a style="color:white" href="{% url 'rentdetails' p.id %}">
                 view details
               </a>
             </button>
@@ -92,21 +96,21 @@
       <h3 class="text-center mt-5 mb-3 text-secondary">Our all hot collection flat</h3>
       <hr/>
       {%  for p in all_Sell_flat %}
-      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xl-4 col-xxl-4">
-        <div class="card h-100">
+      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xl-4 col-xxl-4" >
+        <div class="card h-100" style="background-color: cornflowerblue;">
           <img src="{{p.flat_image.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image">
           <div class="card-body">
-            <h1>type:Flat</h1>
+            <h1>Type:Flat</h1>
             <h5 class="card-title">Divison: {{ p.divission }}</h5>
             <p class="card-text ">
              District: {{ p.district }}.<br/>
               Floor No: {{p.floors_count }}<br/>
               Floor Face: {{p.floor_face }}</br>
-              Price: {{p.price }}</p>
+              Price: {{p.price }} {{p.ammount}}</p>
           </div>
           <div class="d-flex m-2 justify-content-between">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
-              <a href="{% url 'flatdetails' p.id %}">
+              <a style="color:white" href="{% url 'flatdetails' p.id %}">
                 view details
               </a>
               </button>
@@ -146,10 +150,10 @@
 <hr/>
 {%  for p in Sell_land %}
 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xl-4 col-xxl-4">
-  <div class="card h-100">
+  <div class="card h-100" style="background-color: cornflowerblue;">
     <img src="{{p.land_image.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image">
     <div class="card-body">
-      <h1>type:Land</h1>
+      <h1>Type:Land</h1>
       <h5 class="card-title">Divison: {{ p.divission }}</h5>
       <p class="card-text">
        District: {{ p.district }}<br/>
@@ -159,7 +163,7 @@
     </div>
     <div class="d-flex m-2 justify-content-between">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
-        <a href="{% url 'landdetails' p.id %}">
+        <a style="color:white" href="{% url 'landdetails' p.id %}">
           view details
         </a>
         </button>

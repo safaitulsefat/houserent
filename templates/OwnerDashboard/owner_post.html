@@ -23,12 +23,12 @@
   <body>
      
 <div class = "container">
-  <div class = "row">
+  <div class = "row" style="background-color: aquamarine;">
     <div class="col-3 border-end border-primary">    
         {% include 'OwnerDashboard/navbar.html' %}
     </div>
  
-  <div class="col-9 mt-5">
+  <div class="col-9 mt-5" style="background-color: skyblue;">
     <div class="row  g-4">
       {%for msg in messages%}
       {% if msg.tags == "success" %}

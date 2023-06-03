@@ -5,7 +5,7 @@
       <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Basha Lagbe</title>
+      <title>House rent</title>
       {% comment %} fontawesome link {% endcomment %}
       <script src="https://kit.fontawesome.com/d543e0cd2f.js" crossorigin="anonymous"></script>
       {% comment %} bootstrap {% endcomment %}
@@ -18,6 +18,42 @@
 
       {% comment %} custom css {% endcomment %}
       <link rel="stylesheet" href="{% static 'css/owner_navbar.css'%}" type="text/css" />
+      <script>
+         var subjectObject = {
+           "Dhaka": {
+             "Dhaka": ["mirpur10", "Gulsan", "Agargaw", "Motizil","Bosundara"]  
+           },
+           "Chittagong": {
+             "Chittagong": ["Andorkilla", "New market", "Chawbazar","Kulshi"],
+           }
+         }
+         window.onload = function() {
+           var subjectSel = document.getElementById("division");
+           var topicSel = document.getElementById("district");
+           var chapterSel = document.getElementById("location");
+           for (var x in subjectObject) {
+             subjectSel.options[subjectSel.options.length] = new Option(x, x);
+           }
+           subjectSel.onchange = function() {
+            //empty Chapters- and Topics- dropdowns
+             chapterSel.length = 1;
+             topicSel.length = 1;
+             //display correct values
+             for (var y in subjectObject[this.value]) {
+               topicSel.options[topicSel.options.length] = new Option(y, y);
+             }
+           }
+           topicSel.onchange = function() {
+            //empty Chapters dropdown
+            chapterSel.length = 1;
+             //display correct values
+             var z = subjectObject[subjectSel.value][this.value];
+             for (var i = 0; i < z.length; i++) {
+               chapterSel.options[chapterSel.options.length] = new Option(z[i], z[i]);
+             }
+           }
+         }
+         </script>
    </head>
    <body>
       <div class = "container" style="background-color: aquamarine;">
@@ -43,45 +79,36 @@
                <div class="form-check mt-5">
                   <div class="mt-2 ">
                      <label>Property Type</label>
-                     <input type="text" name="property_type" placeholder=" Appartment/Rent/Land" class="form-control mt-2" /> 
+                     <input type="text" name="property_type" placeholder=" Appartment/Rent/Land" class="form-control mt-2" required /> 
                </div>
                <div class="mt-4">
                   <div class="mt-2">
                      <label>Rent Type</label>
-                     <input type="text" name="rent_type" placeholder=" Family/Business/Other" class="form-control mt-2" /> 
+                     <input type="text" name="rent_type" placeholder=" Family/Business/Other" class="form-control mt-2" required /> 
+                  </div>
+               </div>
+               <div class="mt-4">
+                  <div class="mt-2">
+                     <label>Availabel month</label>
+                     <input type="text" name="available_month" placeholder="enter month" class="form-control mt-2" required /> 
                   </div>
                </div>
                <div class="mt-5">
                <div class="input-group mb-3 mt-4" required>
                <select class="form-select mb-3"  name="division" id="division">
-               <option selected="selected">Choose Divission</option>
-               <option value="Dhaka">Dhaka</option>
-               <option value="Chattogram">Chattogram</option>
-               <option value="Rajshahi">Rajshahi</option>
-               <option value="Khulna">Khulna</option>
-               <option value="Barishal">Barishal</option>
-               <option value="Sylhet">Sylhet</option>
-               <option value="Rangpur">Rangpur</option>
-               <option value="Mymenshingh">Mymenshingh</option>
+                <option value="" selected="selected">chose your division</option>
                </select>
                </div>  
                <div class="input-group mb-3" required>
                <select class="form-select mb-3" name="district" id="district" >
-               <option selected="selected">Choose District</option>
-               <option value="Dhaka">Dhaka</option>
-               <option value="Chattogram">Chattogram</option>
-               <option value="Rajshahi">Rajshahi</option>
-               <option value="Khulna">Khulna</option>
-               <option value="Barishal">Barishal</option>
-               <option value="Sylhet">Sylhet</option>
-               <option value="Rangpur">Rangpur</option>
-               <option value="Mymenshingh">Mymenshingh</option>
+                  <option value="" selected="selected">select district</option>
                </select> 
                </div>
-               <div class="input-group mb-4">
-               <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Your Property Located Area"
-               name="location" required>
-               </div>
+               <div class="input-group mb-3" required>
+                  <select class="form-select mb-3" name="location" id="location" >
+                     <option value="" selected="selected">select your property located area</option>
+                  </select> 
+                  </div>
                <div class="input-group mb-3 mt-4">
                <span class="input-group-text">
                <i class="fa-solid fa-bangladeshi-taka-sign text-center pt-2"></i>
@@ -109,10 +136,10 @@
                <div class="input-group mb-3 mt-4 w-25" required>
                <select class="form-select mb-3" id="inputGroupSelect02" name="floor_face">
                <option selected>Floor Face </option>
-               <option value="1">North</option>
-               <option value="2">South</option>
-               <option value="3">East</option>
-               <option value="4">West</option>
+               <option value="North">North</option>
+               <option value="South">South</option>
+               <option value="East">East</option>
+               <option value="West">West</option>
                </select>
                </div>  
                </div>
@@ -134,7 +161,7 @@
                <div class="">
                   <div class=" ">
                      <label>Phone Number</label>
-                     <input type="tel" name="phoneNumber" placeholder="+880" class="form-control mt-2" /> 
+                     <input type="tel" name="phoneNumber" placeholder="+880" class="form-control mt-2" required /> 
                </div>
                <textarea name="details" id="" cols="80" rows="8" class="form-control mt-4 mb-4" style="resize:none;" placeholder="Write Details About Your Property Ellaborately" name="details"></textarea>
                <div class="d-flex gap-3">

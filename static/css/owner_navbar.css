@@ -1,0 +1,87 @@
+.profile-pic {
+  width: 100px;
+}
+
+.m-custom {
+  margin-top: 30px;
+  /* margin-left: 44px; */
+}
+
+a {
+  text-decoration: none;
+}
+
+.bg-color {
+  background-color: #2c74b3;
+  color: white;
+}
+
+.text-color {
+  color: #2c74b3;
+}
+
+.object-pos {
+  object-position: center;
+}
+
+.m-img {
+  margin-left: 60px;
+}
+
+.btna:hover {
+  background-color: #2c74b3;
+  transition: ease-in-out;
+  color: white;
+}
+
+.btna:hover a {
+  background-color: #2c74b3;
+  transition: ease-in-out;
+  color: white;
+}
+
+.xtra-margin {
+  margin-left: -18px;
+}
+
+.xtra-margin-act {
+  margin-left: -24px;
+}
+
+/* .object-btn{
+    margin-left: -230px;
+} */
+
+.gray-bg {
+  background-color: #f5f5f5;
+}
+
+.card-a:hover {
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.course-details {
+  display: flex;
+  gap: 15px;
+  font-size: 14.6913px;
+  align-items: center;
+}
+
+.fa-star.filled {
+  color: #ffc014;
+}
+
+.fa-star.empty {
+  color: #aeaeae;
+  opacity: 0.25;
+}
+
+.duration {
+  background: #2c74b3;
+  border-radius: 15px;
+  width: 94.83px;
+  height: 29.38px;
+  text-align: center;
+  color: white;
+}

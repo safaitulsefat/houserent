@@ -31,7 +31,16 @@ def userAccount(request) :
 def userDashboard(request):
     if request.user.is_authenticated:
         if not request.user.is_land_owner:
-            return render(request, "TenantDashboard/user_base.html")
+            my_post=OwnerRent.objects.all()
+            all_Sell_flat=Sell_flat.objects.all()
+            Sell_land_flat=Sell_land.objects.all()
+
+            context={
+                'allpost':my_post,
+                'all_Sell_flat':all_Sell_flat,
+                'Sell_land':Sell_land_flat
+            } 
+            return render(request, "TenantDashboard/user_base.html",context)
         else:
             return render(request, 'UserDashboard/unauthorized_user.html')
     else:
@@ -89,7 +98,7 @@ def ownerSell(request, property_type = None):
             floor_face = get_method.get("floor_face")
             details = get_method.get("details")
             flat_image = request.FILES["photo_url"]
-
+            
             flat_data = Sell_flat(divission=divission, district=district, location=location, price=price, ammount=ammount, floors_count=floors_count, floor_face=floor_face,details=details, flat_image=flat_image, user_id = request.user.id)
             flat_data.save()
             
@@ -97,7 +106,7 @@ def ownerSell(request, property_type = None):
 
         if property_type == "land" :
             get_method = request.POST.copy()
-            divission = get_method.get("divission")
+            division = get_method.get("division")
             district = get_method.get("district")
             location = get_method.get("location")
             price = get_method.get("price")
@@ -107,7 +116,7 @@ def ownerSell(request, property_type = None):
             details = get_method.get("details")
             land_image = request.FILES["photo_url"]
 
-            land_data = Sell_land(divission=divission, district=district, location=location, price=price, ammount=ammount, plots_count=plots_count, land_type=land_type, details=details, land_image=land_image, user_id = request.user.id)
+            land_data = Sell_land(division=division, district=district, location=location, price=price, ammount=ammount, plots_count=plots_count, land_type=land_type, details=details, land_image=land_image, user_id = request.user.id)
             land_data.save()
             messages.success(request, "Your land selling post added sucessfully!")
     
@@ -126,6 +135,7 @@ def ownerRent(request):
         division = get_method.get("division")
         district = get_method.get("district")
         property_location = get_method.get("location")
+        available_month = get_method.get("available_month")
         rent_money = get_method.get("money")
         money_type = get_method.get("money_type")
         floor_no = get_method.get("floor_no")
@@ -137,7 +147,7 @@ def ownerRent(request):
         phone_no=get_method.get("phoneNumber")
         rent_photo = request.FILES['rentimage']
         
-        rent_data = OwnerRent(property_type=property_type, rent_type=rent_type, division=division, district=district, property_location=property_location, rent_money=rent_money, money_type=money_type,
+        rent_data = OwnerRent(property_type=property_type, rent_type=rent_type, division=division, district=district, property_location=property_location,available_month=available_month, rent_money=rent_money, money_type=money_type,
                               floor_no=floor_no, floor_face=floor_face, plot_size=plot_size, numerical_value_type=numerical_value_type, area_description=area_description, rent_photo=rent_photo,user_email=user_email,phone_no=phone_no)
         rent_data.save()
         messages.success(request, "Your Rental Post added sucessfully!")
@@ -275,8 +285,8 @@ def updatepost(request,id):
         return render(request, "OwnerDashboard/updateLand.html", context)
     
     
-def userSearch(request):
-    return render(request, "TenantDashboard/search.html")
+#def userSearch(request):
+#    return render(request, "TenantDashboard/search.html")
     
 def flatDetails(request):
     return render(request, "TenantDashboard/details_flat.html")
@@ -366,17 +376,33 @@ def land_view(request, id):
         landdetails = Sell_land.objects.get(id=id)
         return render(request, 'OwnerDashboard/landdetails.html', {'landdetails': landdetails})
         
-def search(request):
-    get_method = request.GET.copy()
-    keywords = get_method.get('keywords') or None
-    product = OwnerRent.objects.all()
-    
-    if keywords:
-        keyword = get_method['keywords']
-        product_list = product.filter(description__icontains=keyword)
+
+
+def search_house_rent(request):
+    query = request.GET.get('query')
+    house_rent_list = []
+    house_rent_list1 = []
+    house_rent_list2 = []
+
+    if query:
+        house_rent_list = OwnerRent.objects.filter(
+            rent_money__icontains=query
+            # Add more fields for searching, e.g., district__icontains=query, division__icontains=query, etc.
+        ) 
+        house_rent_list1=Sell_land.objects.filter(
+            price__icontains=query 
+            # Add more fields for searching, e.g., district__icontains=query, division__icontains=query, etc.
+        ) 
+        house_rent_list2=Sell_flat.objects.filter(
+            price__icontains=query
+            # Add more fields for searching, e.g., district__icontains=query, division__icontains=query, etc.
+        )
+
     context = {
-        'product_list':product_list
+        'query': query,
+        'house_rent_list': house_rent_list,
+        'house_rent_list1': house_rent_list1,
+        'house_rent_list2': house_rent_list2
     }
-    
-    return render(request,'OwnerDashboard/search_result.html',context)
-        
+
+    return render(request, 'OwnerDashboard/search_results.html', context)

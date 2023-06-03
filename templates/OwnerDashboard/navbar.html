@@ -1,3 +1,4 @@
+
 {% load static %}
       <div class="d-flex justify-content-center">
         {% if request.user.user_image %} 
@@ -13,7 +14,7 @@
       <div>
 
         {% if request.user.is_land_owner %}
-        <button class="btn btn-sm btna object-btn text-color fs-5 w-100 mb-3"> 
+        <button  class="btn btn-sm btna object-btn text-color fs-5 w-100 mb-3 button"> 
             <i class="fa-solid fa-gauge-high"></i> 
             <a href="{%url 'owner-home' %}" class="text-color"> Home </a>
         </button>
@@ -25,18 +26,7 @@
         </button>
         {% endif %}
 
-        {% if request.user.is_land_owner %}
-        <button class="btn btn-sm btna object-btn text-color fs-5 w-100 mb-3"> 
-          <i class="fa-solid fa-sack-dollar">  </i>       
-          <a href="{%url 'buy'%}" class="text-color"> Buy </a>
-        </button>
-
-        {% else %}
-        <button class="btn btn-sm btna object-btn text-color fs-5 w-100 mb-3"> 
-            <i class="fa-solid fa-sack-dollar">  </i>       
-            <a href="{%url 'user-buy'%}" class="text-color"> Buy </a>
-        </button>
-        {% endif %}
+        
         
         {% if request.user.is_land_owner %}
           <button class="btn btn-sm btna object-btn text-color fs-5 w-100 mb-3"> 

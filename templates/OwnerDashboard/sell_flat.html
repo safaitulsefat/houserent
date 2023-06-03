@@ -1,51 +1,31 @@
+
+
 <div class="mt-5 me-5 mb-4">
   <h4 class="mt-2 mb-5 text-secondary text-decoration-underline text-center">
     Fill With Your Flat Details
   </h4>
   <form
     class="form"
-    action="{% url 'sell_property' 'flat' %}"
     method="POST"
     enctype="multipart/form-data"
   >
     {% csrf_token %}
     <div class="input-group mb-3 mt-4" required>
-      <select class="form-select mb-3" id="inputGroupSelect02" name="divission">
-        <option selected>Choose Divission</option>
-        <option value="Dhaka">Dhaka</option>
-        <option value="Chattogram">Chattogram</option>
-        <option value="Rajshahi">Rajshahi</option>
-        <option value="Khulna">Khulna</option>
-        <option value="Barishal">Barishal</option>
-        <option value="Sylhet">Sylhet</option>
-        <option value="Rangpur">Rangpur</option>
-        <option value="Mymenshingh">Mymenshingh</option>
+      <select class="form-select mb-3" id="divission" name="divission">
+          <option value="" selected="selected">chose your division</option>
       </select>
     </div>
     <div class="input-group mb-3" required>
-      <select class="form-select mb-3" id="inputGroupSelect02" name="district">
-        <option selected>Choose District</option>
-        <option value="Dhaka">Dhaka</option>
-        <option value="Khulna">Khulna</option>
-        <option value="Chattogram">Chattogram</option>
-        <option value="Cumilla">Cumilla</option>
-        <option value="Rajshahi">Rajshahi</option>
-        <option value="Sylhet">Sylhet</option>
-        <option value="Barishal">Barishal</option>
+      <select class="form-select mb-3" id="district" name="district">
+        <option value="" selected="selected">select district</option>
       </select>
     </div>
 
-    <div class="input-group mb-4">
-      <input
-        type="text"
-        name="location"
-        class="form-control"
-        aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-default"
-        placeholder="Your Flat Located Area"
-        required
-      />
-    </div>
+    <div class="input-group mb-3" required>
+      <select class="form-select mb-3" name="location" id="location" >
+         <option value="" selected="selected">select your property located area</option>
+      </select> 
+      </div>
 
     <div class="input-group mb-3">
       <span class="input-group-text">
@@ -127,3 +107,41 @@
     <input class="btn bg-color ms-3 mb-5" type="reset" value="Reset" />
   </form>
 </div>
+
+
+<script>
+  var subjectObject = {
+    "Dhaka": {
+      "Dhaka": ["mirpur10", "Gulsan", "Agargaw", "Motizil","Bosundara"]  
+    },
+    "Chittagong": {
+      "Chittagong": ["Andorkilla", "New market", "Chawbazar","Kulshi"],
+    }
+  }
+  window.onload = function() {
+    var subjectSel = document.getElementById("divission");
+    var topicSel = document.getElementById("district");
+    var chapterSel = document.getElementById("location");
+    for (var x in subjectObject) {
+      subjectSel.options[subjectSel.options.length] = new Option(x, x);
+    }
+    subjectSel.onchange = function() {
+      //empty Chapters- and Topics- dropdowns
+      chapterSel.length = 1;
+      topicSel.length = 1;
+      //display correct values
+      for (var y in subjectObject[this.value]) {
+        topicSel.options[topicSel.options.length] = new Option(y, y);
+      }
+    }
+    topicSel.onchange = function() {
+     //empty Chapters dropdown
+     chapterSel.length = 1;
+      //display correct values
+      var z = subjectObject[subjectSel.value][this.value];
+      for (var i = 0; i < z.length; i++) {
+        chapterSel.options[chapterSel.options.length] = new Option(z[i], z[i]);
+      }
+    }
+  }
+  </script>

@@ -4,7 +4,7 @@ from django.db import models
 # Create your models here.
 
 class Sell_flat(models.Model):
-
+   
     divission = models.CharField(max_length=20, null=True, blank=True)
     district = models.CharField(max_length=20, null=True, blank=True)
 
@@ -24,8 +24,7 @@ class Sell_flat(models.Model):
          return self.location
 
 class Sell_land(models.Model):
-
-    divission = models.CharField(max_length=20, null=True, blank=True)
+    division = models.CharField(max_length=20, null=True, blank=True)
     district = models.CharField(max_length=20, null=True, blank=True)
 
     location = models.TextField(max_length=255, null=True, blank=True)
@@ -52,6 +51,7 @@ class OwnerRent(models.Model):
     district = models.CharField(max_length=20, null=True, blank=True)
 
     property_location = models.TextField(max_length=100, null=True, blank=True)
+    available_month = models.CharField(max_length=20, null=True, blank=True)
     rent_money = models.IntegerField(null=True, blank=True)
     money_type = models.CharField(max_length=255, null=True, blank=True)
 

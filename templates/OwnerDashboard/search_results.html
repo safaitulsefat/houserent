@@ -1,0 +1,104 @@
+<!-- search_results.html -->
+{%load static%}
+<style>
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      max-width: 300px;
+      margin: auto;
+      text-align: center;
+      font-family: arial;
+    }
+    
+    .price {
+      color: grey;
+      font-size: 22px;
+    }
+    
+    .card button {
+      border: none;
+      outline: 0;
+      padding: 12px;
+      color: white;
+      background-color: #000;
+      text-align: center;
+      cursor: pointer;
+      width: 100%;
+      font-size: 18px;
+    }
+    
+    .card button:hover {
+      opacity: 0.7;
+    }
+    </style>
+<h1>Search Results</h1>
+
+{% if query %}
+    <p>Showing results for: {{ query }}</p>
+    {% if house_rent_list %}
+        {% for house_rent in house_rent_list %}
+        <h2 style="text-align:center">Product Card</h2>
+
+        <div class="card">
+        <img src="{{house_rent.rent_photo.url}}" alt="Denim Jeans" style="width:100%">
+        <h1>Tailored Jeans</h1>
+        <p class="price">$19.99</p>
+        <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem jeansum.</p>
+        <p><button>
+            <a style="color:white" href="{% url 'rentdetails' house_rent.id %}">
+              view details
+            </a>
+          </button></p>
+        </div>
+        
+        {% empty %}
+            <p>No results found.</p>
+        {% endfor %}
+    {%endif%}
+    {% if house_rent_list2 %}
+    
+        {% for house_rent in house_rent_list2 %}
+        <h2 style="text-align:center">Product Card</h2>
+
+        <div class="card">
+        <img src="{{house_rent.flat_image.url}}" alt="Denim Jeans" style="width:100%">
+        <h1>Tailored Jeans</h1>
+        <p class="price">$19.99</p>
+        <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem jeansum.</p>
+        <p><button>
+            <a style="color:white" href="{% url 'flatdetails' house_rent.id %}">
+              view details
+            </a>
+          </button></p>
+        </div>
+        
+        {% empty %}
+         <p>No results found.</p>
+        {% endfor %}
+    
+    {%endif%}
+    {% if house_rent_list1 %}
+    
+        {% for house_rent in house_rent_list1 %}
+        <h2 style="text-align:center">Product Card</h2>
+
+        <div class="card">
+        <img src="{{house_rent.land_image.url}}" alt="Denim Jeans" style="width:100%">
+        <h1>Tailored Jeans</h1>
+        <p class="price">$19.99</p>
+        <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem jeansum.</p>
+        <p><button>
+            <a style="color:white" href="{% url 'landdetails' house_rent.id %}">
+              view details
+            </a>
+          </button></p>
+        </div>
+        
+        {% empty %}
+          <p>No results found.</p>
+        {% endfor %}
+    
+    {%endif%}
+
+{% else %}
+    <p>Please enter a search query.</p>
+{% endif %}
