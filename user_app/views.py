@@ -98,7 +98,7 @@ def ownerSell(request, property_type = None):
             floor_face = get_method.get("floor_face")
             details = get_method.get("details")
             flat_image = request.FILES["photo_url"]
-            
+
             flat_data = Sell_flat(divission=divission, district=district, location=location, price=price, ammount=ammount, floors_count=floors_count, floor_face=floor_face,details=details, flat_image=flat_image, user_id = request.user.id)
             flat_data.save()
             

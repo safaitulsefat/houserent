@@ -4,7 +4,6 @@ from django.db import models
 # Create your models here.
 
 class Sell_flat(models.Model):
-   
     divission = models.CharField(max_length=20, null=True, blank=True)
     district = models.CharField(max_length=20, null=True, blank=True)
 
