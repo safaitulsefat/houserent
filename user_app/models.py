@@ -4,6 +4,7 @@ from django.db import models
 # Create your models here.
 
 class Sell_flat(models.Model):
+    property_type = models.CharField(max_length=255, null=True, blank=True)
     divission = models.CharField(max_length=20, null=True, blank=True)
     district = models.CharField(max_length=20, null=True, blank=True)
 
@@ -23,6 +24,7 @@ class Sell_flat(models.Model):
          return self.location
 
 class Sell_land(models.Model):
+    property_type = models.CharField(max_length=255, null=True, blank=True)
     division = models.CharField(max_length=20, null=True, blank=True)
     district = models.CharField(max_length=20, null=True, blank=True)
 

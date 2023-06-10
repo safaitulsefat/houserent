@@ -1,33 +1,111 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>House rent</title>
+      {% comment %} fontawesome link {% endcomment %}
+      <script src="https://kit.fontawesome.com/d543e0cd2f.js" crossorigin="anonymous"></script>
+      {% comment %} bootstrap {% endcomment %}
+      <link
+         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+         rel="stylesheet"
+         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+         crossorigin="anonymous"
+         />
 
+      {% comment %} custom css {% endcomment %}
+      <link rel="stylesheet" href="{% static 'css/owner_navbar.css'%}" type="text/css" />
+      <script>
+         var subjectObject = {
+           "Dhaka": {
+             "Dhaka": ["mirpur10", "Gulsan", "Agargaw", "Motizil","Bosundara"]  
+           },
+           "Chittagong": {
+             "Chittagong": ["Andorkilla", "New market", "Chawbazar","Kulshi"],
+           }
+         }
+         window.onload = function() {
+           var subjectSel = document.getElementById("division");
+           var topicSel = document.getElementById("district");
+           var chapterSel = document.getElementById("location");
+           for (var x in subjectObject) {
+             subjectSel.options[subjectSel.options.length] = new Option(x, x);
+           }
+           subjectSel.onchange = function() {
+            //empty Chapters- and Topics- dropdowns
+             chapterSel.length = 1;
+             topicSel.length = 1;
+             //display correct values
+             for (var y in subjectObject[this.value]) {
+               topicSel.options[topicSel.options.length] = new Option(y, y);
+             }
+           }
+           topicSel.onchange = function() {
+            //empty Chapters dropdown
+            chapterSel.length = 1;
+             //display correct values
+             var z = subjectObject[subjectSel.value][this.value];
+             for (var i = 0; i < z.length; i++) {
+               chapterSel.options[chapterSel.options.length] = new Option(z[i], z[i]);
+             }
+           }
+         }
+         </script>
+   </head>
+   <body>
+      <div class = "container" style="background-color: aquamarine;">
+      <div class = "row">
+         <div class="col-3 border-end border-primary">    
+            {% include 'OwnerDashboard/navbar.html' %}
+         </div>
+        
+         <div class ="col-9" style="background-color:skyblue">
+            <h4 class="text-center mt-5 text-decoration-underline text-secondary"> Fill your flat details  </h4>
+            {%for msg in messages%}
+            <div class="alert alert-primary alert-dismissible fade show mt-3" role="alert">
+               <strong>Hey!</strong> {{msg}}
+               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+               </button>
+             </div>
+            {%endfor%}
 <div class="mt-5 me-5 mb-4">
-  <h4 class="mt-2 mb-5 text-secondary text-decoration-underline text-center">
-    Fill With Your Land Details
-  </h4>
+ 
   <form
     class="form"
-    action="{% url 'sell_property' 'land' %}"
+   
     method="POST"
     enctype="multipart/form-data"
     id="sell-land-form"
   >
     {% csrf_token %}
-    <div class="input-group mb-3 mt-4" required>
-      <select class="form-select mb-3" id="division" name="division">
-        <option value="" selected="selected">chose your division</option>
-      </select>
-    </div>
-    <div class="input-group mb-3" required>
-      <select class="form-select mb-3" id="district" name="district">
-        <option value="" selected="selected">select district</option>
-      </select>
-    </div>
-
-    <div class="input-group mb-3" required>
-      <select class="form-select mb-3" name="location" id="location" >
-         <option value="" selected="selected">select your property located area</option>
-      </select> 
+      <div class="input-group mb-3">
+        <select class="form-select mb-3" name="property_type" required>
+          <option value="" selected disabled>property_type</option>
+          <option value="land">land</option>
+        </select> 
       </div>
-
+      
+      <div class="input-group mb-3 mt-4">
+        <select class="form-select mb-3" id="division" name="division" required>
+          <option value="" disabled selected>Choose your division</option>
+        </select>
+      </div>
+      
+      <div class="input-group mb-3">
+        <select class="form-select mb-3" id="district" name="district" required>
+          <option value="" disabled selected>Select district</option>
+        </select>
+      </div>
+      
+      <div class="input-group mb-3">
+        <select class="form-select mb-3" name="location" id="location" required>
+          <option value="" disabled selected>Select your property located area</option>
+        </select> 
+      </div>
+      
     <div class="input-group mb-3">
       <span class="input-group-text">
         <i class="fa-solid fa-bangladeshi-taka-sign text-center pt-2"></i>
@@ -79,6 +157,7 @@
       class="form-control mt-4 mb-4"
       style="resize: none"
       placeholder="Write Details About Your Land Ellaborately"
+      required
     ></textarea>
 
     <div class="d-flex gap-3">
@@ -90,6 +169,7 @@
         class="form-control mb-5 w-50"
         id="customFile"
         name="photo_url"
+        required
       />
     </div>
     <input class="btn bg-color ms-2 me-3 mb-5" type="submit" value="Submit" />
@@ -97,3 +177,8 @@
   </form>
 </div>
 
+</div>
+</div>
+      </div>
+   </body>
+   </html>

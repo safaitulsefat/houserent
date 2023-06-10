@@ -31,7 +31,12 @@
         {% if request.user.is_land_owner %}
           <button class="btn btn-sm btna object-btn text-color fs-5 w-100 mb-3"> 
             <i class="fa-brands fa-sellcast"></i>       
-            <a href="{%url 'sell'%}" class="text-color"> Sell </a>
+            <a href="{%url 'flat'%}" class="text-color"> Sell flat </a>
+          </button>
+
+          <button class="btn btn-sm btna object-btn text-color fs-5 w-100 mb-3"> 
+            <i class="fa-brands fa-sellcast"></i>       
+            <a href="{%url 'land'%}" class="text-color"> Sell land </a>
           </button>
   
           <button class="btn btn-sm btna object-btn text-color fs-5 w-100 mb-3"> 

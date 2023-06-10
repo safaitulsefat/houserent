@@ -77,10 +77,12 @@
                {% csrf_token %}
 
                <div class="form-check mt-5">
-                  <div class="mt-2 ">
-                     <label>Property Type</label>
-                     <input type="text" name="property_type" placeholder=" Appartment/Rent/Land" class="form-control mt-2" required /> 
-               </div>
+                  <div class="input-group mb-3">
+                     <select class="form-select mb-3" name="property_type" required>
+                       <option value="" selected disabled>property_type</option>
+                       <option value="rent">rent</option>
+                     </select> 
+                   </div>
                <div class="mt-4">
                   <div class="mt-2">
                      <label>Rent Type</label>
@@ -94,21 +96,23 @@
                   </div>
                </div>
                <div class="mt-5">
-               <div class="input-group mb-3 mt-4" required>
-               <select class="form-select mb-3"  name="division" id="division">
-                <option value="" selected="selected">chose your division</option>
-               </select>
-               </div>  
-               <div class="input-group mb-3" required>
-               <select class="form-select mb-3" name="district" id="district" >
-                  <option value="" selected="selected">select district</option>
-               </select> 
-               </div>
-               <div class="input-group mb-3" required>
-                  <select class="form-select mb-3" name="location" id="location" >
-                     <option value="" selected="selected">select your property located area</option>
-                  </select> 
-                  </div>
+                  <div class="input-group mb-3 mt-4">
+                     <select class="form-select mb-3" id="division" name="division" required>
+                       <option value="" disabled selected>Choose your division</option>
+                     </select>
+                   </div>
+                   
+                   <div class="input-group mb-3">
+                     <select class="form-select mb-3" id="district" name="district" required>
+                       <option value="" disabled selected>Select district</option>
+                     </select>
+                   </div>
+                   
+                   <div class="input-group mb-3">
+                     <select class="form-select mb-3" name="location" id="location" required>
+                       <option value="" disabled selected>Select your property located area</option>
+                     </select> 
+                   </div>
                <div class="input-group mb-3 mt-4">
                <span class="input-group-text">
                <i class="fa-solid fa-bangladeshi-taka-sign text-center pt-2"></i>
@@ -120,9 +124,9 @@
                </select> 
                </div>
                <div class="d-flex gap-5">
-               <div class="input-group mb-3 mt-4 w-50" required>
-               <select class="form-select mb-3" id="inputGroupSelect02" name="floor_no">
-               <option selected>Floor No. (If Any)</option>
+               <div class="input-group mb-3 mt-4 w-50">
+               <select class="form-select mb-3" id="inputGroupSelect02" name="floor_no"  required>
+               <option value="" disabled selected>Floor No. (If Any)</option>
                <option value="1">1st</option>
                <option value="2">2nd</option>
                <option value="3">3rd</option>
@@ -133,9 +137,9 @@
                <option value="8">8th</option>
                </select>
                </div>  
-               <div class="input-group mb-3 mt-4 w-25" required>
-               <select class="form-select mb-3" id="inputGroupSelect02" name="floor_face">
-               <option selected>Floor Face </option>
+               <div class="input-group mb-3 mt-4 w-25" >
+               <select class="form-select mb-3" id="inputGroupSelect02" name="floor_face" required>
+               <option value="" disabled selected>Floor Face </option>
                <option value="North">North</option>
                <option value="South">South</option>
                <option value="East">East</option>
@@ -161,9 +165,9 @@
                <div class="">
                   <div class=" ">
                      <label>Phone Number</label>
-                     <input type="tel" name="phoneNumber" placeholder="+880" class="form-control mt-2" required /> 
+                     <input type="tel" name="phoneNumber" placeholder="+880" pattern="^\+?(88)?0?1[3456789][0-9]{8}\b" class="form-control mt-2" required /> 
                </div>
-               <textarea name="details" id="" cols="80" rows="8" class="form-control mt-4 mb-4" style="resize:none;" placeholder="Write Details About Your Property Ellaborately" name="details"></textarea>
+               <textarea name="details" id="" cols="80" rows="8" class="form-control mt-4 mb-4" style="resize:none;" placeholder="Write Details About Your Property Ellaborately" name="details" required></textarea>
                <div class="d-flex gap-3">
                <label class="form-label text-color fw-bold" for="customFile">Upload Photo Of Your Property</label>
                <input type="file" name="rentimage" class="form-control mb-5 w-50" id="customFile" required />

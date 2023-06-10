@@ -1,6 +1,8 @@
 import os
 import time
 
+from django.db.models import Q
+
 from account.models import NewUser
 from django.contrib import messages
 from django.http import HttpResponse
@@ -85,42 +87,48 @@ def ownerBuy(request):
     return render(request, "OwnerDashboard/owner_buy.html")
 
 
-def ownerSell(request, property_type = None):
-    if request.user.is_authenticated and request.method == "POST" :
-        if property_type == "flat" :
-            get_method = request.POST.copy()
-            divission = get_method.get("divission")
-            district = get_method.get("district")
-            location = get_method.get("location")
-            price = get_method.get("price")
-            ammount = get_method.get("ammount")
-            floors_count = get_method.get("floors_count")
-            floor_face = get_method.get("floor_face")
-            details = get_method.get("details")
-            flat_image = request.FILES["photo_url"]
 
-            flat_data = Sell_flat(divission=divission, district=district, location=location, price=price, ammount=ammount, floors_count=floors_count, floor_face=floor_face,details=details, flat_image=flat_image, user_id = request.user.id)
-            flat_data.save()
-            
-            messages.success(request, "Your flat selling post added sucessfully!")
 
-        if property_type == "land" :
-            get_method = request.POST.copy()
-            division = get_method.get("division")
-            district = get_method.get("district")
-            location = get_method.get("location")
-            price = get_method.get("price")
-            ammount = get_method.get("ammount")
-            plots_count = get_method.get("plots_count")
-            land_type = get_method.get("land_type")
-            details = get_method.get("details")
-            land_image = request.FILES["photo_url"]
+def ownerSellFlat(request):
+    if request.user.is_authenticated and request.method == "POST":
+        get_method = request.POST.copy()
+        property_type = request.POST.get("property_type")
+        divission = get_method.get("divission")
+        district = get_method.get("district")
+        location = get_method.get("location")
+        price = get_method.get("price")
+        ammount = get_method.get("ammount")
+        floors_count = get_method.get("floors_count")
+        floor_face = get_method.get("floor_face")
+        details = get_method.get("details")
+        flat_image = request.FILES["photo_url"]
 
-            land_data = Sell_land(division=division, district=district, location=location, price=price, ammount=ammount, plots_count=plots_count, land_type=land_type, details=details, land_image=land_image, user_id = request.user.id)
-            land_data.save()
-            messages.success(request, "Your land selling post added sucessfully!")
-    
-    return render(request, "OwnerDashboard/owner_sell.html")
+        flat_data = Sell_flat(property_type=property_type, divission=divission, district=district, location=location, price=price, ammount=ammount, floors_count=floors_count, floor_face=floor_face, details=details, flat_image=flat_image, user_id=request.user.id)
+        flat_data.save()
+
+        messages.success(request, "Your flat selling post added successfully!")
+        return render(request, "OwnerDashboard/sell_flat.html")
+    return render(request, "OwnerDashboard/sell_flat.html")
+def ownerSellLand(request):
+    if request.user.is_authenticated and request.method == "POST":
+        get_method = request.POST.copy()
+        property_type = request.POST.get("property_type")
+        division = get_method.get("division")
+        district = get_method.get("district")
+        location = get_method.get("location")
+        price = get_method.get("price")
+        ammount = get_method.get("ammount")
+        plots_count = get_method.get("plots_count")
+        land_type = get_method.get("land_type")
+        details = get_method.get("details")
+        land_image = request.FILES["photo_url"]
+
+        land_data = Sell_land(property_type=property_type, division=division, district=district, location=location, price=price, ammount=ammount, plots_count=plots_count, land_type=land_type, details=details, land_image=land_image, user_id=request.user.id)
+        land_data.save()
+
+        messages.success(request, "Your land selling post added successfully!")
+        return render(request, "OwnerDashboard/sell_land.html")
+    return render(request, "OwnerDashboard/sell_land.html")
 
 
 def ownerRent(request):
@@ -380,26 +388,32 @@ def land_view(request, id):
 
 def search_house_rent(request):
     query = request.GET.get('query')
+    query_division = request.GET.get('query_division')
     house_rent_list = []
     house_rent_list1 = []
     house_rent_list2 = []
 
-    if query:
+    if query and query_division:
         house_rent_list = OwnerRent.objects.filter(
-            rent_money__icontains=query
+            Q(property_type__icontains=query) &
+            Q(division__icontains=query_division)
+             
             # Add more fields for searching, e.g., district__icontains=query, division__icontains=query, etc.
         ) 
         house_rent_list1=Sell_land.objects.filter(
-            price__icontains=query 
+            Q(property_type__icontains=query) &
+            Q(division__icontains=query_division)
             # Add more fields for searching, e.g., district__icontains=query, division__icontains=query, etc.
         ) 
         house_rent_list2=Sell_flat.objects.filter(
-            price__icontains=query
+            Q(property_type__icontains=query) &
+            Q(divission__icontains=query_division)
             # Add more fields for searching, e.g., district__icontains=query, division__icontains=query, etc.
         )
 
     context = {
         'query': query,
+        'query_division':query_division,
         'house_rent_list': house_rent_list,
         'house_rent_list1': house_rent_list1,
         'house_rent_list2': house_rent_list2
