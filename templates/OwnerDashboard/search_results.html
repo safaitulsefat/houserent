@@ -1,53 +1,64 @@
 <!-- search_results.html -->
+<!DOCTYPE html>
 {%load static%}
-<style>
-    .card {
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-      max-width: 300px;
-      margin: auto;
-      text-align: center;
-      font-family: arial;
-    }
-    
-    .price {
-      color: grey;
-      font-size: 22px;
-    }
-    
-    .card button {
-      border: none;
-      outline: 0;
-      padding: 12px;
-      color: white;
-      background-color: #000;
-      text-align: center;
-      cursor: pointer;
-      width: 100%;
-      font-size: 18px;
-    }
-    
-    .card button:hover {
-      opacity: 0.7;
-    }
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basha Lagbe</title>
+    <style>
+      h3{
+        background-color: rgb(36, 35, 35);
+        height: 50px;
+        border-radius: 10px;
+      }
     </style>
-<h1>Search Results</h1>
+    {% comment %} fontawesome link {% endcomment %}
+    <script src="https://kit.fontawesome.com/d543e0cd2f.js" crossorigin="anonymous"></script>
 
+    {% comment %} bootstrap {% endcomment %}
+      <link  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+         rel="stylesheet"
+         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+         crossorigin="anonymous"
+         />
+    {% comment %} custom css {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/owner_navbar.css'%}" type="text/css" />
+
+  </head>
+  <body>
+
+<h1>Search Results</h1>
+<div class = "container" style="background-color: antiquewhite;">
+  <div class = "row">
+  <div class="col-12 mt-5">
+    <div class="row  g-4">
 {% if query %}
     <p>Showing results for: {{ query }}</p>
     {% if house_rent_list %}
-        {% for house_rent in house_rent_list %}
-        <h2 style="text-align:center">Product Card</h2>
-
-        <div class="card">
-        <img src="{{house_rent.rent_photo.url}}" alt="Denim Jeans" style="width:100%">
-        <h5>property_type:{{house_rent.property_type}}</h5>
-        <p>division:{{house_rent.division}}</p>
-        <p>Some text about the house. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem jeansum.</p>
-        <p><button>
-            <a style="color:white" href="{% url 'rentdetails' house_rent.id %}">
-              view details
-            </a>
-          </button></p>
+        {% for p in house_rent_list %}
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xl-4 col-xxl-4">
+          <div class="card h-100" style="background-color: cornflowerblue;">
+            <img src="{{p.rent_photo.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image">
+            <div class="card-body">
+              <h1>Type:Rent</h1>
+              <p class="card-text">
+                Rent Type:{{ p.rent_type }}.<br/>
+                Available_month:{{p.available_month}}</br>
+                Floor No:{{p.floor_no }}<br/>
+                Floor Face:{{p.floor_face }}</br>
+                Price: {{p.rent_money }} {{p.money_type}}</p>
+                Phone:{{p.phone_no }}</p>
+            </div>
+            <div class="d-flex m-2 justify-content-between">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
+                <a style="color:white" href="{% url 'rentdetails' p.id %}">
+                  view details
+                </a>
+              </button>
+            </div>
+          </div>
         </div>
         
         {% empty %}
@@ -56,20 +67,28 @@
     {%endif%}
     {% if house_rent_list2 %}
     
-        {% for house_rent in house_rent_list2 %}
-        <h2 style="text-align:center">Product Card</h2>
+        {% for p in house_rent_list2 %}
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xl-4 col-xxl-4" >
+          <div class="card h-100" style="background-color: cornflowerblue;">
+            <img src="{{p.flat_image.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image">
+            <div class="card-body">
+              <h1>Type:Flat</h1>
+              <h5 class="card-title">Divison: {{ p.divission }}</h5>
+              <p class="card-text ">
+               District: {{ p.district }}.<br/>
+                Floor No: {{p.floors_count }}<br/>
+                Floor Face: {{p.floor_face }}</br>
+                Price: {{p.price }} {{p.ammount}}</p>
+            </div>
+            <div class="d-flex m-2 justify-content-between">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
+                <a style="color:white" href="{% url 'flatdetails' p.id %}">
+                  view details
+                </a>
+                </button>
+            
 
-        <div class="card">
-        <img src="{{house_rent.flat_image.url}}" alt="Denim Jeans" style="width:100%">
-        <h5>property_type:{{house_rent.property_type}}</h5>
-        <p>division:{{house_rent.divission}}</p>
-        <p>Some text about the house. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem jeansum.</p>
-        <p><button>
-            <a style="color:white" href="{% url 'flatdetails' house_rent.id %}">
-              view details
-            </a>
-          </button></p>
-        </div>
+  
         
         {% empty %}
          <p>No results found.</p>
@@ -78,21 +97,29 @@
     {%endif%}
     {% if house_rent_list1 %}
     
-        {% for house_rent in house_rent_list1 %}
-        <h2 style="text-align:center">Product Card</h2>
-
-        <div class="card">
-        <img src="{{house_rent.land_image.url}}" alt="Denim Jeans" style="width:100%">
-        <h5>property_type:{{house_rent.property_type}}</h5>
-        <p>division:{{house_rent.division}}</p>
-        <p>Some text about the house. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem jeansum.</p>
-        <p><button>
-            <a style="color:white" href="{% url 'landdetails' house_rent.id %}">
-              view details
-            </a>
-          </button></p>
+        {% for p in house_rent_list1 %}
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xl-4 col-xxl-4">
+          <div class="card h-100" style="background-color: cornflowerblue;">
+            <img src="{{p.land_image.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image">
+            <div class="card-body">
+              <h1>Type:Land</h1>
+              <h5 class="card-title">Divison: {{ p.division }}</h5>
+              <p class="card-text">
+               District: {{ p.district }}<br/>
+               Plots: {{p.plots_count }}<br/>
+               Land type: {{p.land_type }}</br>
+                Price: {{p.price }}</p>
+            </div>
+            <div class="d-flex m-2 justify-content-between">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
+                <a style="color:white" href="{% url 'landdetails' p.id %}">
+                  view details
+                </a>
+                </button>
+            
+            </div>
+          </div>
         </div>
-        
         {% empty %}
           <p>No results found.</p>
         {% endfor %}
@@ -102,3 +129,12 @@
 {% else %}
     <p>Please enter a search query.</p>
 {% endif %}
+
+    </div>
+  </div>
+  </div>
+</div>
+          </div>
+          
+  </body>
+</html>
