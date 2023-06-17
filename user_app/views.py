@@ -420,3 +420,27 @@ def search_house_rent(request):
     }
 
     return render(request, 'OwnerDashboard/search_results.html', context)
+
+
+def search_type_rent(request):
+    query = request.GET.get('query')
+   
+    house_rent_type = []
+    
+
+    if query:
+        house_rent_type = OwnerRent.objects.filter(
+            Q(rent_type__icontains=query) 
+           
+             
+            # Add more fields for searching, e.g., district__icontains=query, division__icontains=query, etc.
+        ) 
+       
+    context = {
+        'query': query,
+        
+        'house_rent_type': house_rent_type,
+        
+    }
+
+    return render(request, 'OwnerDashboard/renttype_results.html', context)

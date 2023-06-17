@@ -37,6 +37,10 @@
 {% if query %}
     <p>Showing results for: {{ query }}</p>
     {% if house_rent_list %}
+    <form action="{% url 'search_type_rent' %}" method="GET">
+      <input type="text" name="query" placeholder="Enter search property type" />    
+      <button type="submit">Search</button>
+    </form>
         {% for p in house_rent_list %}
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xl-4 col-xxl-4">
           <div class="card h-100" style="background-color: cornflowerblue;">
