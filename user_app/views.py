@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import redirect, render,get_object_or_404
 
-from .models import OwnerRent, Sell_flat, Sell_land
+from .models import OwnerRent, Sell_flat, Sell_land,VehicleOwner
 
 # Create your views here.
 
@@ -20,6 +20,8 @@ def identifyUser(request):
     if request.user.is_authenticated:
         if request.user.is_land_owner:
             return redirect('/dashboard/owner-home')
+        elif request.user.is_furniture_delivery :
+            return redirect('/dashboard/furniture-home')
         else:
             return redirect('/dashboard/user-home')
     else:
@@ -36,11 +38,13 @@ def userDashboard(request):
             my_post=OwnerRent.objects.all()
             all_Sell_flat=Sell_flat.objects.all()
             Sell_land_flat=Sell_land.objects.all()
+            vh_post=VehicleOwner.objects.all()
 
             context={
                 'allpost':my_post,
                 'all_Sell_flat':all_Sell_flat,
-                'Sell_land':Sell_land_flat
+                'Sell_land':Sell_land_flat,
+                'vehiclepost':vh_post,
             } 
             return render(request, "TenantDashboard/user_base.html",context)
         else:
@@ -70,13 +74,31 @@ def ownerDashboard(request):
             my_post=OwnerRent.objects.all()
             all_Sell_flat=Sell_flat.objects.all()
             Sell_land_flat=Sell_land.objects.all()
+            vh_post=VehicleOwner.objects.all()
 
             context={
                 'allpost':my_post,
                 'all_Sell_flat':all_Sell_flat,
-                'Sell_land':Sell_land_flat
+                'Sell_land':Sell_land_flat,
+                'vehiclepost':vh_post,
             } 
             return render(request, "OwnerDashboard/owner_base.html",context)
+        else:
+          return render(request, 'UserDashboard/unauthorized_user.html')
+    else:
+        return render(request, 'UserDashboard/unauthorized_user.html')
+
+def furnituredashboard(request):
+    if request.user.is_authenticated:
+        if request.user.is_furniture_delivery:
+            vh_post=VehicleOwner.objects.all()
+            
+
+            context={
+                'vehiclepost':vh_post,
+                
+            } 
+            return render(request, "furniture/furniture_base.html",context)
         else:
           return render(request, 'UserDashboard/unauthorized_user.html')
     else:
@@ -444,3 +466,88 @@ def search_type_rent(request):
     }
 
     return render(request, 'OwnerDashboard/renttype_results.html', context)
+
+
+
+def vehicleOwner(request):
+
+    user_email = None
+    if request.user.is_authenticated:
+        user_email = request.user.email
+    if request.method == "POST" and request.FILES['vehicleimage']:
+        get_method = request.POST.copy()
+        vehicle_type = request.POST.get("vehicle_type")
+        division = get_method.get("division")
+        district = get_method.get("district")
+        vehicle_location = get_method.get("location")
+        available_time = get_method.get("available_time")
+        km_price = get_method.get("money")
+        vehicle_description = get_method.get("details")
+        phone_no=get_method.get("phoneNumber")
+        vehicle_photo = request.FILES['vehicleimage']
+        
+        vehicle_data = VehicleOwner(vehicle_type=vehicle_type,division=division, district=district,vehicle_location=vehicle_location,available_time=available_time, km_price=km_price, 
+                             vehicle_description=vehicle_description, vehicle_photo=vehicle_photo,user_email=user_email,phone_no=phone_no)
+        vehicle_data.save()
+        messages.success(request, "Your Rental Post added sucessfully!")
+
+        return render(request, "furniture/vehicle_owner.html")
+
+    return render(request, "furniture/vehicle_owner.html")
+
+
+def vehicle_post(request):
+    user_email = None
+    user_id=None
+   
+    if request.user.is_authenticated:
+        user_email = request.user.email
+        user_id = request.user.id
+    
+    vh_post=VehicleOwner.objects.filter(user_email=user_email)
+   
+
+    context={
+        'vehiclepost':vh_post,
+        
+    } 
+    return render(request, "furniture/vehicle_post.html",context)
+
+
+
+def vehicle_update_post(request,id):
+    vehicle = VehicleOwner.objects.get(id=id)
+
+    if request.method == "POST":
+        if len(request.FILES) !=0:
+            if vehicle.vehicle_photo:
+                os.remove(vehicle.vehicle_photo.path)
+            vehicle.vehicle_photo=request.FILES['vehicleimage']    
+        get_method = request.POST.copy()
+        vehicle.vehicle_type = request.POST.get("vehicle_type")
+        vehicle.division = get_method.get("division")
+        vehicle.district = get_method.get("district")
+        vehicle.vehicle_location = get_method.get("location")
+        vehicle.km_price = get_method.get("money")
+        vehicle.vehicle_description = get_method.get("details")
+        vehicle.phone_no=get_method.get("phoneNumber")
+        vehicle.save()
+        messages.success(request,"Post updated Sucesfully!!")
+        
+        return vehicle_post(request)
+    
+    context={
+        'vehicle':vehicle
+    }
+    return render(request, "furniture/vehicle_update.html", context)
+
+
+def delete_vehicle_post(request, id):
+        try : 
+            VehicleOwner.objects.get(id=id).delete()
+            time.sleep(1)
+            messages.success(request,"vehicle post deleted Sucesfully!!")
+        except :
+            messages.error(request,"vehicle post doesn't exist.")
+
+        return vehicle_post(request)

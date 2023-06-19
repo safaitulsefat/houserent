@@ -1,10 +1,10 @@
 from re import search
 from django.urls import path
 
-from .views import ( delete_post, deletesellflat, deletesellland, flat_view,flatDetails,
+from .views import ( delete_post, delete_vehicle_post, deletesellflat, deletesellland, flat_view,flatDetails, furnituredashboard,
                     identifyUser, land_view, owner_post, ownerBuy, ownerDashboard,
                     ownerRent, ownerSellFlat, ownerSellLand, rent_view, search_house_rent, search_type_rent, updatepost, userAccount, userBuy,
-                    userDashboard, userRent, userShow)
+                    userDashboard, userRent, userShow, vehicle_post, vehicle_update_post, vehicleOwner)
 
 urlpatterns =[
     path("", identifyUser, name="identify-user"),
@@ -14,6 +14,8 @@ urlpatterns =[
     path("user-show",userShow, name="user-show"),
     path("user-rent",userRent, name="user-rent"),
     path("owner-home", ownerDashboard, name="owner-home"),
+    path("furniture-home", furnituredashboard, name="furniture-home"),
+    path("vehicle-post",vehicle_post, name="vehicle-post"),
     path("owner-buy",ownerBuy,name="buy"),
     path("owner-sellFlat",ownerSellFlat, name="flat"),
     path("owner-sellLand",ownerSellLand, name="land"),
@@ -22,7 +24,10 @@ urlpatterns =[
     path("owner-rent",ownerRent, name="rent"),
     path("owner-post",owner_post, name="posts"),
     path("post_delete/<int:id>/",delete_post, name="deletepost"),
-    path("update/<int:id>/",updatepost, name="updatepost"),
+    path("post_delete_vehicle/<int:id>/",delete_vehicle_post, name="deletepostvehicle"),
+    path("update_vehicle/<int:id>/",vehicle_update_post, name="updatepost_vehicle"),
+     path("update/<int:id>/",updatepost, name="updatepost"),
+    path("vehicle",vehicleOwner, name="vehicle"),
     
     # path("", userDash, name="dash"),
     # path("user-Buy",userBuy, name="buy"),

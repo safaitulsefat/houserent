@@ -66,5 +66,19 @@ class OwnerRent(models.Model):
     user_email = models.EmailField(max_length=200,blank=True, null=True)
     phone_no=models.CharField(max_length=20,null=True, blank=True)
 
+
+class VehicleOwner(models.Model):
+    vehicle_type = models.CharField(max_length=255, null=True, blank=True)
+    division = models.CharField(max_length=20, null=True, blank=True)
+    district = models.CharField(max_length=20, null=True, blank=True)
+    vehicle_location = models.TextField(max_length=100, null=True, blank=True)
+    available_time = models.CharField(max_length=20, null=True, blank=True)
+    km_price = models.IntegerField(null=True, blank=True)
+    vehicle_description = models.TextField(max_length=250, null=True, blank=True)
+    vehicle_photo = models.ImageField(upload_to='vahicle', blank=True, null=True)
+    date_added = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    user_email = models.EmailField(max_length=200,blank=True, null=True)
+    phone_no=models.CharField(max_length=20,null=True, blank=True)
+
     # def __str__(self):
     #      return self.rent_type

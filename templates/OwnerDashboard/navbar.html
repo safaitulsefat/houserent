@@ -18,7 +18,11 @@
             <i class="fa-solid fa-gauge-high"></i> 
             <a href="{%url 'owner-home' %}" class="text-color"> Home </a>
         </button>
-
+        {% elif request.user.is_furniture_delivery %}
+        <button  class="btn btn-sm btna object-btn text-color fs-5 w-100 mb-3 button"> 
+            <i class="fa-solid fa-gauge-high"></i> 
+            <a href="{%url 'furniture-home' %}" class="text-color"> Home </a>
+        </button>
         {% else %}
         <button class="btn btn-sm btna object-btn text-color fs-5 w-100 mb-3"> 
             <i class="fa-solid fa-gauge-high"></i> 
@@ -49,6 +53,20 @@
             <a href="{%url 'posts'%}" class="text-color">My Post </a>
           </button>
           {% endif %}
+
+
+        {% if request.user.is_furniture_delivery %}
+          <button class="btn btn-sm btna object-btn text-color fs-5 w-100 mb-3"> 
+            <i class="fa-brands fa-sellcast"></i>       
+            <a href="{%url 'vehicle' %}" class="text-color"> post vehicle </a>
+          </button>
+          <button class="btn btn-sm btna object-btn text-color fs-5 w-100 mb-3"> 
+            <i class="fa-brands fa-sellcast"></i>       
+            <a href="{%url 'vehicle-post' %}" class="text-color"> your all post </a>
+          </button>
+        {% endif %}
+
+
           
         <button class="btn btn-sm btna object-btn text-color fs-5 w-100 mb-3"> 
           <i class="fa-solid fa-gear"></i>     

@@ -13,14 +13,21 @@ def register_view(request) :
         email = request.POST.get("email")
         password = request.POST.get("password")
         land_owner = request.POST.get("is_land_owner")
+        furniture_delivery = request.POST.get("is_furniture_delivery")
         is_land_owner = False
         if land_owner == 'true' :
             is_land_owner = True
-
+        
+        is_furniture_delivery = False
+        if furniture_delivery == 'true':
+            is_furniture_delivery = True
+        
+        
+        
         if first_name and last_name and email and password :
             is_exist = NewUser.objects.filter(email = email)
             if not is_exist :
-                user_obj = NewUser.objects.create_user(email= email, first_name = first_name, last_name = last_name, is_land_owner=is_land_owner, password = password)
+                user_obj = NewUser.objects.create_user(email= email, first_name = first_name, last_name = last_name, is_land_owner=is_land_owner,is_furniture_delivery=is_furniture_delivery, password = password)
                 return render(request, 'register_page/user_created.html')
             else :
                 return render(request, 'register_page/user_exist.html')

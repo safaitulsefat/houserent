@@ -193,7 +193,32 @@
 </div>
 {% endfor %}
 {%endif%}
- 
+{% if vehiclepost %}
+<h3  class="text-center mb-3 text-secondary">Our all Hot collection vehicle</h3>
+<hr/>
+{%  for p in vehiclepost %}
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xl-4 col-xxl-4">
+  <div class="card h-100" style="background-color: cornflowerblue;">
+    <img src="{{p.vehicle_photo.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image">
+    <div class="card-body">
+      <p class="card-text">
+        vehicle Type:{{ p.vehicle_type }}.<br/>
+        Available_month:{{p.available_time}}</br>
+        Price: {{p.km_price }} </p>
+        Phone:{{p.phone_no }}</p>
+    </div>
+    <div class="d-flex m-2 justify-content-between">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
+        <a style="color:white" href="{% url 'rentdetails' p.id %}">
+          view details
+        </a>
+      </button>
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+{%endif%}
 
 
       </div>
