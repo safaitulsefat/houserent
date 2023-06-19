@@ -38,7 +38,7 @@
       {%  for p in allpost %}
       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xl-4 col-xxl-4">
         <div class="card h-100" style="background-color: cornflowerblue;">
-          <img src="{{p.rent_photo.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image">
+          <img src="{{p.rent_photo.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image" style=" padding: 10px; background-color:cornflowerblue;">
           <div class="card-body">
             <h1>type:Rent</h1>
             <h5 class="card-title">Property Type:{{ p.property_type }}</h5>
@@ -94,8 +94,8 @@
       <hr/>
       {%  for p in all_Sell_flat %}
       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xl-4 col-xxl-4">
-        <div class="card h-100">
-          <img src="{{p.flat_image.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image">
+        <div class="card h-100" style="background-color: cornflowerblue;">
+          <img src="{{p.flat_image.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image" style=" padding: 10px; background-color:cornflowerblue;">
           <div class="card-body">
             <h1>type:Flat</h1>
             <h5 class="card-title">Divison: {{ p.divission }}</h5>
@@ -147,8 +147,8 @@
 <hr/>
 {%  for p in Sell_land %}
 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xl-4 col-xxl-4">
-  <div class="card h-100">
-    <img src="{{p.land_image.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image">
+  <div class="card h-100" style="background-color: cornflowerblue;">
+    <img src="{{p.land_image.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image" style=" padding: 10px; background-color:cornflowerblue;">
     <div class="card-body">
       <h1>type:Land</h1>
       <h5 class="card-title">Divison: {{ p.divission }}</h5>
@@ -199,7 +199,7 @@
 {%  for p in vehiclepost %}
 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xl-4 col-xxl-4">
   <div class="card h-100" style="background-color: cornflowerblue;">
-    <img src="{{p.vehicle_photo.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image">
+    <img src="{{p.vehicle_photo.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image" style=" padding: 10px; background-color:cornflowerblue;">
     <div class="card-body">
       <p class="card-text">
         vehicle Type:{{ p.vehicle_type }}.<br/>

@@ -11,7 +11,7 @@
   <style>
     img {
   height:600px;
-  margin-left: 20%;
+  
 }
   </style>
   <!-- Bootstrap CSS v5.2.1 -->
@@ -37,13 +37,13 @@
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="background-color:gray;">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img class="d-block w-80" src="{{rentdetails.rent_photo.url}}" alt="First slide">
+          <img class="d-block w-100" src="{{rentdetails.rent_photo.url}}" alt="First slide">
         </div>
         <div class="carousel-item">
-          <img class="d-block w-80" src="{{rentdetails.rent_photo.url}}" alt="Second slide">
+          <img class="d-block w-100" src="{{rentdetails.rent_photo.url}}" alt="Second slide">
         </div>
         <div class="carousel-item">
-          <img class="d-block w-80" src="{{rentdetails.rent_photo.url}}" alt="Third slide">
+          <img class="d-block w-100" src="{{rentdetails.rent_photo.url}}" alt="Third slide">
         </div>
       </div>
       <a class="carousel-control-prev" style="color:black" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -57,7 +57,7 @@
     </div>
     </div>
     
-    <div style="background-color:skyblue; padding: 20px; border: 1px solid rgb(67, 142, 168);">
+    <div style="background-color:skyblue; padding: 20px; border: 10px solid black;">
     <h4>Price: {{rentdetails.rent_money}} {{rentdetails.money_type}} </h4>
     <br>
     <br>
@@ -70,12 +70,13 @@
     </ul>
     <br>
     <br>
-    <h5 style="background-color:#2c74b3 ; padding: 10px; margin-right: 80%; color:white">Owner Contract details</h5>
+    <div style="background-color:#2c74b3 ; padding: 10px; margin-right: 80%; color:white; border: 5px solid black;">
+    <h5>Owner Contract details</h5>
       <i class="fa fa-phone" style='font-size:18px'><span>&nbsp; &nbsp;phone:&nbsp; {{rentdetails.phone_no}}</span> </i><br>
       <i class='fa fa-envelope-open' style='font-size:18px'><span>&nbsp; &nbsp;Email:&nbsp; {{rentdetails.user_email}}</span></i>
     <br>
     <br>
-    <button class="btn btn-primary" style="background-color:  #2c74b3;"id="btn">Book now</button>
+  </div>
   </div>
     </div>
     

@@ -39,8 +39,8 @@
       <hr/>
       {%  for p in allpost %}
       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xl-4 col-xxl-4">
-        <div class="card h-100" style="background-color: cornflowerblue;">
-          <img src="{{p.rent_photo.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image">
+        <div class="card h-100" style="background-color: rgba(139, 173, 236, 0.491);">
+          <img src="{{p.rent_photo.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image" style=" padding: 10px; background-color:cornflowerblue;">
           <div class="card-body">
             <h1>Type:Rent</h1>
             <p class="card-text">
@@ -48,7 +48,7 @@
               Available_month:{{p.available_month}}</br>
               Floor No:{{p.floor_no }}<br/>
               Floor Face:{{p.floor_face }}</br>
-              Price: {{p.rent_money }} {{p.money_type}}</p>
+              Price: {{p.rent_money }} {{p.money_type}}
               Phone:{{p.phone_no }}</p>
           </div>
           <div class="d-flex m-2 justify-content-between">
@@ -97,8 +97,8 @@
       <hr/>
       {%  for p in all_Sell_flat %}
       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xl-4 col-xxl-4" >
-        <div class="card h-100" style="background-color: cornflowerblue;">
-          <img src="{{p.flat_image.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image">
+        <div class="card h-100" style="background-color: rgba(139, 173, 236, 0.491);">
+          <img src="{{p.flat_image.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image"  style=" padding: 10px; background-color:cornflowerblue;">
           <div class="card-body">
             <h1>Type:Flat</h1>
             <h5 class="card-title">Divison: {{ p.divission }}</h5>
@@ -150,8 +150,8 @@
 <hr/>
 {%  for p in Sell_land %}
 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xl-4 col-xxl-4">
-  <div class="card h-100" style="background-color: cornflowerblue;">
-    <img src="{{p.land_image.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image">
+  <div class="card h-100" style="background-color:  rgba(139, 173, 236, 0.491);">
+    <img src="{{p.land_image.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image"  style=" padding: 10px; background-color:cornflowerblue;">
     <div class="card-body">
       <h1>Type:Land</h1>
       <h5 class="card-title">Divison: {{ p.division }}</h5>
@@ -159,7 +159,7 @@
        District: {{ p.district }}<br/>
        Plots: {{p.plots_count }}<br/>
        Land type: {{p.land_type }}</br>
-        Price: {{p.price }}</p>
+       Price: {{p.price }}</p>
     </div>
     <div class="d-flex m-2 justify-content-between">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
@@ -185,13 +185,13 @@
       <hr/>
       {%  for p in vehiclepost %}
       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xl-4 col-xxl-4">
-        <div class="card h-100" style="background-color: cornflowerblue;">
-          <img src="{{p.vehicle_photo.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image">
+        <div class="card h-100" style="background-color: rgba(139, 173, 236, 0.491);">
+          <img src="{{p.vehicle_photo.url}}" class="card-img-top img-thumbnail h-50" alt="Rent image"  style=" padding: 10px; background-color:cornflowerblue;">
           <div class="card-body">
             <p class="card-text">
               vehicle Type:{{ p.vehicle_type }}.<br/>
               Available_month:{{p.available_time}}</br>
-              Price: {{p.km_price }} </p>
+              Price: {{p.km_price }}
               Phone:{{p.phone_no }}</p>
           </div>
           <div class="d-flex m-2 justify-content-between">

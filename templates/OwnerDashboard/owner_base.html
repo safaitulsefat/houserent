@@ -31,11 +31,13 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-3 border-end border-primary" style="background-color: aquamarine;  top: 0;">
-          {% include 'OwnerDashboard/navbar.html' %}
+        <div class="col-3 border-end border-primary" style="background-color: aquamarine;">
+          <div class="navbar" style="position: fixed; top: 0; left: 8%; width: 20%;">
+            {% include 'OwnerDashboard/navbar.html' %}
+          </div>
         </div>
 
-        <div class="col-9">{% include 'OwnerDashboard/dash_item.html' %}</div>
+        <div class="col-9 mr-2">{% include 'OwnerDashboard/dash_item.html' %}</div>
       </div>
     </div>
 
